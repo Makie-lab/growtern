@@ -4,7 +4,8 @@ export type Category =
   | "Hackathons"
   | "Workshops"
   | "Scholarships"
-  | "Projects";
+  | "Projects"
+  | "Webinars";
 
 export type Role =
   | "Frontend Developer"
@@ -838,6 +839,326 @@ export const resources: Resource[] = [
     link: "https://goodfirstissues.com/",
     isFree: true,
   },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // ── WEBINARS ──
+  // ══════════════════════════════════════════════════════════════════════════
+  {
+    id: "wb1",
+    title: "Google Developer Groups Asia Events",
+    description: "Live and recorded sessions from GDG chapters across Asia — Android, Web, Cloud, AI/ML topics.",
+    category: "Webinars",
+    roles: ["Full Stack Developer", "Mobile Developer", "AI/ML Engineer", "Cloud Architect"],
+    provider: "Google Developer Groups",
+    link: "https://developers.google.com/community/gdg",
+    isFree: true,
+  },
+  {
+    id: "wb2",
+    title: "AWS Summit Asia Pacific (On-Demand)",
+    description: "Recorded sessions from AWS Summit events in Singapore, Tokyo, Mumbai, and Manila. Cloud architecture and best practices.",
+    category: "Webinars",
+    roles: ["Cloud Architect", "DevOps Engineer", "Solutions Architect", "Backend Developer"],
+    provider: "Amazon Web Services",
+    link: "https://aws.amazon.com/events/summits/asia-pacific/",
+    isFree: true,
+  },
+  {
+    id: "wb3",
+    title: "Microsoft Build Asia Sessions",
+    description: "On-demand sessions from Microsoft Build covering Azure, AI, developer tools, and low-code platforms for the Asia-Pacific region.",
+    category: "Webinars",
+    roles: ["Full Stack Developer", "Cloud Architect", "AI/ML Engineer", "DevOps Engineer"],
+    provider: "Microsoft",
+    link: "https://build.microsoft.com/en-US/sessions",
+    isFree: true,
+  },
+  {
+    id: "wb4",
+    title: "Figma Config (Recorded Sessions)",
+    description: "Watch recorded talks from Figma Config on product design, design systems, prototyping, and collaboration at scale.",
+    category: "Webinars",
+    roles: ["UI/UX Designer", "Product Designer", "Frontend Developer"],
+    provider: "Figma",
+    link: "https://config.figma.com/",
+    isFree: true,
+  },
+  {
+    id: "wb5",
+    title: "Google I/O Extended Asia",
+    description: "Community-organized watch parties and follow-up sessions for Google I/O across Asian cities. Covers Android, Web, and AI.",
+    category: "Webinars",
+    roles: ["Mobile Developer", "Full Stack Developer", "AI/ML Engineer"],
+    provider: "Google",
+    link: "https://io.google/",
+    isFree: true,
+  },
+  {
+    id: "wb6",
+    title: "AWS re:Invent Recorded Sessions",
+    description: "Hundreds of recorded sessions from AWS re:Invent covering architecture, serverless, ML, security, and DevOps.",
+    category: "Webinars",
+    roles: ["Cloud Architect", "DevOps Engineer", "Backend Developer", "Data Engineer"],
+    provider: "Amazon Web Services",
+    link: "https://reinvent.awsevents.com/",
+    isFree: true,
+  },
+  {
+    id: "wb7",
+    title: "GopherCon Singapore (Recordings)",
+    description: "Recorded talks from Southeast Asia's premier Go conference. Backend architecture, concurrency, and systems programming.",
+    category: "Webinars",
+    roles: ["Backend Developer", "DevOps Engineer", "Cloud Architect"],
+    provider: "GopherCon SG",
+    link: "https://gophercon.sg/",
+    isFree: true,
+  },
+  {
+    id: "wb8",
+    title: "ReactJS Philippines Meetup Recordings",
+    description: "Recorded sessions from the ReactJS Philippines community. Frontend patterns, Next.js, performance, and career talks.",
+    category: "Webinars",
+    roles: ["Frontend Developer", "Full Stack Developer"],
+    provider: "ReactJS Philippines",
+    link: "https://reactjs.org.ph/",
+    isFree: true,
+  },
+  {
+    id: "wb9",
+    title: "PyCon APAC (Recorded Talks)",
+    description: "Recorded sessions from PyCon Asia-Pacific covering Python, data science, machine learning, web development, and automation.",
+    category: "Webinars",
+    roles: ["Backend Developer", "Data Analyst", "AI/ML Engineer", "Data Engineer"],
+    provider: "PyCon APAC",
+    link: "https://pycon.asia/",
+    isFree: true,
+  },
+  {
+    id: "wb10",
+    title: "JSConf Asia (Recorded Sessions)",
+    description: "Conference talks on JavaScript ecosystem, Node.js, frontend frameworks, and developer tooling from across Asia.",
+    category: "Webinars",
+    roles: ["Frontend Developer", "Full Stack Developer", "Backend Developer"],
+    provider: "JSConf Asia",
+    link: "https://jsconf.asia/",
+    isFree: true,
+  },
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // ── ASIA-BASED RESOURCES (additional across all categories) ──
+  // ══════════════════════════════════════════════════════════════════════════
+
+  // Internships — Asia
+  {
+    id: "i13",
+    title: "Grab Engineering Internship (Singapore)",
+    description: "Join Southeast Asia's leading superapp. Work on payments, transport, food delivery, and fintech at scale.",
+    category: "Internships",
+    roles: ["Backend Developer", "Full Stack Developer", "Mobile Developer", "Data Engineer"],
+    provider: "Grab",
+    link: "https://grab.careers/",
+    isFree: true,
+  },
+  {
+    id: "i14",
+    title: "Shopee / Sea Group Internship (Singapore)",
+    description: "Intern at Southeast Asia's largest e-commerce platform. Backend systems, ML, and product roles available.",
+    category: "Internships",
+    roles: ["Backend Developer", "Full Stack Developer", "Data Analyst", "AI/ML Engineer"],
+    provider: "Shopee / Sea Group",
+    link: "https://careers.shopee.sg/",
+    isFree: true,
+  },
+  {
+    id: "i15",
+    title: "Mercari Engineering Internship (Japan)",
+    description: "Japan's largest marketplace app. Work on microservices, Go, Kubernetes, and ML-powered features.",
+    category: "Internships",
+    roles: ["Backend Developer", "Mobile Developer", "AI/ML Engineer", "DevOps Engineer"],
+    provider: "Mercari",
+    link: "https://careers.mercari.com/",
+    isFree: true,
+  },
+  {
+    id: "i16",
+    title: "Globe Telecom Tech Internship (Philippines)",
+    description: "Work on telco-scale systems, fintech (GCash), and digital transformation at the Philippines' leading network.",
+    category: "Internships",
+    roles: ["Full Stack Developer", "Data Engineer", "Mobile Developer", "Cybersecurity"],
+    provider: "Globe Telecom",
+    link: "https://www.globe.com.ph/about-us/careers.html",
+    isFree: true,
+  },
+  {
+    id: "i17",
+    title: "Rakuten Technology Internship (Japan)",
+    description: "Work at Japan's largest e-commerce company on global-scale products. English-friendly engineering teams in Tokyo.",
+    category: "Internships",
+    roles: ["Full Stack Developer", "Backend Developer", "Mobile Developer", "Data Analyst"],
+    provider: "Rakuten",
+    link: "https://global.rakuten.com/corp/careers/",
+    isFree: true,
+  },
+  {
+    id: "i18",
+    title: "Flipkart Engineering Internship (India)",
+    description: "Intern at India's top e-commerce platform. Work on large-scale distributed systems serving millions of users.",
+    category: "Internships",
+    roles: ["Backend Developer", "Full Stack Developer", "Data Engineer", "AI/ML Engineer"],
+    provider: "Flipkart",
+    link: "https://www.flipkartcareers.com/",
+    isFree: true,
+  },
+  {
+    id: "i19",
+    title: "GovTech Singapore Internship",
+    description: "Build digital public services for Singapore. Work on national digital identity, payments, and smart city tech.",
+    category: "Internships",
+    roles: ["Full Stack Developer", "DevOps Engineer", "Cybersecurity", "UI/UX Designer"],
+    provider: "GovTech Singapore",
+    link: "https://www.tech.gov.sg/careers/",
+    isFree: true,
+  },
+
+  // Hackathons — Asia
+  {
+    id: "h11",
+    title: "AngelHack Asia",
+    description: "Asia's largest hackathon series across Manila, Singapore, Kuala Lumpur, and more. Build startups in 48 hours.",
+    category: "Hackathons",
+    roles: ["Full Stack Developer", "Mobile Developer", "UI/UX Designer", "Product Manager"],
+    provider: "AngelHack",
+    link: "https://angelhack.com/",
+    isFree: true,
+  },
+  {
+    id: "h12",
+    title: "JPHACKS (Japan)",
+    description: "Japan's largest student hackathon. Build innovative products and pitch to Japanese tech companies.",
+    category: "Hackathons",
+    roles: ["Full Stack Developer", "Mobile Developer", "AI/ML Engineer"],
+    provider: "JPHACKS",
+    link: "https://jphacks.com/",
+    isFree: true,
+  },
+  {
+    id: "h13",
+    title: "Smart India Hackathon",
+    description: "India's largest hackathon organized by the government. Solve real national challenges with technology.",
+    category: "Hackathons",
+    roles: ["Full Stack Developer", "AI/ML Engineer", "Data Analyst", "Mobile Developer"],
+    provider: "Government of India",
+    link: "https://www.sih.gov.in/",
+    isFree: true,
+  },
+
+  // Certifications — Asia-relevant
+  {
+    id: "c23",
+    title: "Alibaba Cloud ACA Certification",
+    description: "Cloud computing certification from Alibaba Cloud. Covers elastic computing, storage, networking, and security.",
+    category: "Certifications",
+    roles: ["Cloud Architect", "DevOps Engineer", "Backend Developer"],
+    provider: "Alibaba Cloud",
+    link: "https://edu.alibabacloud.com/certification",
+    isFree: true,
+  },
+  {
+    id: "c24",
+    title: "LINE Developer Certification (Japan/SE Asia)",
+    description: "Learn to build on LINE's messaging platform — chatbots, LIFF apps, and LINE Pay integration.",
+    category: "Certifications",
+    roles: ["Full Stack Developer", "Mobile Developer", "Backend Developer"],
+    provider: "LINE",
+    link: "https://developers.line.biz/en/",
+    isFree: true,
+  },
+
+  // Workshops — Asia
+  {
+    id: "w13",
+    title: "FOSSASIA Open Source Workshop",
+    description: "Asia's premier open source conference and workshop series. Hands-on sessions in Singapore and online.",
+    category: "Workshops",
+    roles: ["Full Stack Developer", "Backend Developer", "DevOps Engineer", "AI/ML Engineer"],
+    provider: "FOSSASIA",
+    link: "https://fossasia.org/",
+    isFree: true,
+  },
+  {
+    id: "w14",
+    title: "AWS User Group Philippines Workshops",
+    description: "Hands-on AWS workshops organized by the Filipino cloud community. Serverless, containers, and architecture.",
+    category: "Workshops",
+    roles: ["Cloud Architect", "DevOps Engineer", "Backend Developer"],
+    provider: "AWS User Group PH",
+    link: "https://aws.amazon.com/developer/community/usergroups/",
+    isFree: true,
+  },
+  {
+    id: "w15",
+    title: "Google Developer Space Tokyo",
+    description: "Free in-person and online workshops at Google's developer space in Tokyo. Android, Web, Cloud, and Firebase.",
+    category: "Workshops",
+    roles: ["Mobile Developer", "Full Stack Developer", "Cloud Architect"],
+    provider: "Google Japan",
+    link: "https://developers.google.com/community/spaces",
+    isFree: true,
+  },
+
+  // Scholarships — Asia
+  {
+    id: "s11",
+    title: "AWS ASEAN Scholarship (Singapore)",
+    description: "Full scholarship for cloud computing studies through Generation Singapore. Includes certification and job placement.",
+    category: "Scholarships",
+    roles: ["Cloud Architect", "DevOps Engineer", "Solutions Architect"],
+    provider: "Amazon Web Services / Generation",
+    link: "https://singapore.generation.org/",
+    isFree: true,
+  },
+  {
+    id: "s12",
+    title: "Google Career Certificates Asia Scholarships",
+    description: "Full scholarships for Google Career Certificates in data analytics, UX design, and IT support across Asia-Pacific.",
+    category: "Scholarships",
+    roles: ["Data Analyst", "UI/UX Designer", "Project Manager", "Cybersecurity"],
+    provider: "Google / Coursera",
+    link: "https://grow.google/intl/ALL_in/",
+    isFree: true,
+  },
+  {
+    id: "s13",
+    title: "JASSO Scholarship for Tech Studies (Japan)",
+    description: "Japan Student Services Organization scholarships for international students pursuing technology degrees in Japan.",
+    category: "Scholarships",
+    roles: ["Full Stack Developer", "AI/ML Engineer", "Data Engineer", "Backend Developer"],
+    provider: "JASSO",
+    link: "https://www.jasso.go.jp/en/",
+    isFree: true,
+  },
+
+  // Projects — Asia
+  {
+    id: "p11",
+    title: "Code for Asia (Civic Tech)",
+    description: "Contribute to civic technology projects solving governance, public health, and transparency challenges across Asia.",
+    category: "Projects",
+    roles: ["Full Stack Developer", "Frontend Developer", "Data Analyst", "UI/UX Designer"],
+    provider: "Code for Asia",
+    link: "https://codeforasia.org/",
+    isFree: true,
+  },
+  {
+    id: "p12",
+    title: "Open Source Philippines",
+    description: "Contribute to Filipino-led open source projects. Web, mobile, and dev tools built by the Philippine tech community.",
+    category: "Projects",
+    roles: ["Full Stack Developer", "Frontend Developer", "Backend Developer", "Mobile Developer"],
+    provider: "Open Source Philippines",
+    link: "https://opensource.ph/",
+    isFree: true,
+  },
 ];
 
 export const categories: CategoryInfo[] = [
@@ -883,6 +1204,13 @@ export const categories: CategoryInfo[] = [
     icon: "Code",
     count: resources.filter((r) => r.category === "Projects").length,
   },
+  {
+    name: "Webinars",
+    slug: "webinars",
+    description: "Live sessions and recorded webinars from industry experts covering development, design, cloud, and career growth across Asia.",
+    icon: "Video",
+    count: resources.filter((r) => r.category === "Webinars").length,
+  },
 ];
 
 export const roles: Role[] = [
@@ -920,4 +1248,5 @@ export const categoryNames: Category[] = [
   "Workshops",
   "Scholarships",
   "Projects",
+  "Webinars",
 ];

@@ -8,7 +8,6 @@ import {
   LayoutGrid,
   GitBranch,
   Search,
-  ArrowRight,
 } from "lucide-react";
 
 type NavItem = {
@@ -21,9 +20,9 @@ const navItems: NavItem[] = [
   { id: "home", label: "Home", Icon: Home },
   { id: "offerings", label: "Offerings", Icon: Sparkles },
   { id: "categories", label: "Categories", Icon: LayoutGrid },
+  { id: "compare", label: "Compare", Icon: GitBranch },
   { id: "roles", label: "Roles", Icon: GitBranch },
   { id: "search", label: "Search", Icon: Search },
-  { id: "cta", label: "Get Started", Icon: ArrowRight },
 ];
 
 export default function Navbar() {

@@ -1,20 +1,26 @@
 import { ArrowDown } from "lucide-react";
 import TernLogo from "./TernLogo";
+import TernFlock from "./TernFlock";
 
 export default function HeroSection() {
   return (
     <section
       id="home"
       aria-label="Introduction"
-      className="section-scroll min-h-[calc(100vh-2rem)] flex items-center px-4 pt-24 pb-16 sm:pt-28"
+      className="section-scroll min-h-[calc(100vh-2rem)] flex items-center px-4 pt-24 pb-16 sm:pt-28 relative overflow-hidden"
     >
+      {/* Tern flock decoration - top right */}
+      <div className="absolute top-20 right-0 w-[300px] sm:w-[400px] opacity-40 pointer-events-none">
+        <TernFlock color="#1e3a5f" />
+      </div>
+
       <div className="w-full max-w-6xl mx-auto flex flex-col items-start text-left animate-fade-in">
-        {/* Logo mark — just the tern, no border */}
+        {/* Logo mark */}
         <div className="mb-6 animate-float">
           <TernLogo size={56} color="#1e3a5f" />
         </div>
 
-        {/* Brand name — Grow+Tern close together, Tern in serif font */}
+        {/* Brand name */}
         <h1 className="text-7xl sm:text-8xl lg:text-9xl leading-none tracking-tighter mb-5">
           <span className="font-black">Grow</span>
           <span
@@ -41,9 +47,8 @@ export default function HeroSection() {
         </p>
 
         <p className="text-lg sm:text-xl opacity-50 mb-12 max-w-xl">
-          Discover certifications, internships, hackathons, and more — curated
-          for students and aspiring professionals. Search by role, find what
-          you need.
+          Certifications, internships, hackathons, webinars, and more — curated
+          for Asia-based students and professionals. Search by role, compare paths, find what you need.
         </p>
 
         {/* CTA Buttons */}
@@ -51,8 +56,8 @@ export default function HeroSection() {
           <a href="#categories" className="btn-primary">
             Browse Categories
           </a>
-          <a href="#roles" className="btn-secondary">
-            Explore Roles
+          <a href="#compare" className="btn-secondary">
+            Compare Roles
           </a>
         </div>
 
