@@ -1,0 +1,70 @@
+import type { Node, Edge } from "reactflow";
+
+export interface RoleNodeData {
+  label: string;
+  category: "engineering" | "design" | "data" | "management" | "security" | "cloud" | "creative";
+  description: string;
+}
+
+export const roleNodes: Node<RoleNodeData>[] = [
+  { id: "frontend", position: { x: 50, y: 60 }, data: { label: "Frontend Developer", category: "engineering", description: "HTML, CSS, JavaScript, React" }, type: "roleNode" },
+  { id: "backend", position: { x: 300, y: 60 }, data: { label: "Backend Developer", category: "engineering", description: "APIs, databases, server logic" }, type: "roleNode" },
+  { id: "uiux", position: { x: 550, y: 60 }, data: { label: "UI/UX Designer", category: "design", description: "Research, wireframes, prototyping" }, type: "roleNode" },
+  { id: "qa", position: { x: 800, y: 60 }, data: { label: "QA Engineer", category: "engineering", description: "Testing, automation, CI pipelines" }, type: "roleNode" },
+  { id: "fullstack", position: { x: 150, y: 220 }, data: { label: "Full Stack Developer", category: "engineering", description: "Frontend + backend + deployment" }, type: "roleNode" },
+  { id: "mobile", position: { x: 420, y: 220 }, data: { label: "Mobile Developer", category: "engineering", description: "iOS, Android, cross-platform" }, type: "roleNode" },
+  { id: "productdesigner", position: { x: 680, y: 220 }, data: { label: "Product Designer", category: "design", description: "Product design, user journeys" }, type: "roleNode" },
+  { id: "techwriter", position: { x: 940, y: 220 }, data: { label: "Technical Writer", category: "creative", description: "Docs, API guides, content" }, type: "roleNode" },
+  { id: "data", position: { x: 50, y: 380 }, data: { label: "Data Analyst", category: "data", description: "SQL, Python, visualization" }, type: "roleNode" },
+  { id: "devops", position: { x: 300, y: 380 }, data: { label: "DevOps Engineer", category: "cloud", description: "CI/CD, containers, monitoring" }, type: "roleNode" },
+  { id: "security", position: { x: 550, y: 380 }, data: { label: "Cybersecurity", category: "security", description: "Pen testing, threat analysis" }, type: "roleNode" },
+  { id: "gamedev", position: { x: 800, y: 380 }, data: { label: "Game Developer", category: "creative", description: "Game engines, 3D, physics" }, type: "roleNode" },
+  { id: "dataengineer", position: { x: 50, y: 540 }, data: { label: "Data Engineer", category: "data", description: "Pipelines, ETL, big data" }, type: "roleNode" },
+  { id: "cloudarchitect", position: { x: 300, y: 540 }, data: { label: "Cloud Architect", category: "cloud", description: "AWS/Azure/GCP, scalability" }, type: "roleNode" },
+  { id: "aiml", position: { x: 550, y: 540 }, data: { label: "AI/ML Engineer", category: "data", description: "ML models, neural networks" }, type: "roleNode" },
+  { id: "blockchain", position: { x: 800, y: 540 }, data: { label: "Blockchain Developer", category: "engineering", description: "Smart contracts, Web3" }, type: "roleNode" },
+  { id: "pm", position: { x: 200, y: 700 }, data: { label: "Project Manager", category: "management", description: "Agile, Scrum, delivery" }, type: "roleNode" },
+  { id: "solutions", position: { x: 500, y: 700 }, data: { label: "Solutions Architect", category: "cloud", description: "System design, strategy" }, type: "roleNode" },
+  { id: "productmanager", position: { x: 800, y: 700 }, data: { label: "Product Manager", category: "management", description: "Roadmaps, GTM, user stories" }, type: "roleNode" },
+];
+
+export const roleEdges: Edge[] = [
+  { id: "e-fe-fs", source: "frontend", target: "fullstack", animated: true },
+  { id: "e-fe-mobile", source: "frontend", target: "mobile" },
+  { id: "e-fe-uiux", source: "frontend", target: "uiux", animated: true },
+  { id: "e-fe-gamedev", source: "frontend", target: "gamedev" },
+  { id: "e-be-fs", source: "backend", target: "fullstack", animated: true },
+  { id: "e-be-devops", source: "backend", target: "devops" },
+  { id: "e-be-data", source: "backend", target: "data" },
+  { id: "e-be-blockchain", source: "backend", target: "blockchain" },
+  { id: "e-uiux-product", source: "uiux", target: "productdesigner", animated: true },
+  { id: "e-uiux-mobile", source: "uiux", target: "mobile" },
+  { id: "e-uiux-productmgr", source: "uiux", target: "productmanager" },
+  { id: "e-qa-devops", source: "qa", target: "devops" },
+  { id: "e-qa-security", source: "qa", target: "security" },
+  { id: "e-qa-techwriter", source: "qa", target: "techwriter" },
+  { id: "e-fs-devops", source: "fullstack", target: "devops", animated: true },
+  { id: "e-fs-cloud", source: "fullstack", target: "cloudarchitect" },
+  { id: "e-fs-pm", source: "fullstack", target: "pm" },
+  { id: "e-mobile-gamedev", source: "mobile", target: "gamedev" },
+  { id: "e-mobile-productmgr", source: "mobile", target: "productmanager" },
+  { id: "e-pd-productmgr", source: "productdesigner", target: "productmanager", animated: true },
+  { id: "e-pd-techwriter", source: "productdesigner", target: "techwriter" },
+  { id: "e-data-de", source: "data", target: "dataengineer", animated: true },
+  { id: "e-data-aiml", source: "data", target: "aiml", animated: true },
+  { id: "e-data-pm", source: "data", target: "pm" },
+  { id: "e-devops-cloud", source: "devops", target: "cloudarchitect", animated: true },
+  { id: "e-devops-security", source: "devops", target: "security" },
+  { id: "e-devops-solutions", source: "devops", target: "solutions" },
+  { id: "e-security-cloud", source: "security", target: "cloudarchitect" },
+  { id: "e-security-blockchain", source: "security", target: "blockchain" },
+  { id: "e-de-aiml", source: "dataengineer", target: "aiml" },
+  { id: "e-de-cloud", source: "dataengineer", target: "cloudarchitect" },
+  { id: "e-de-solutions", source: "dataengineer", target: "solutions" },
+  { id: "e-cloud-solutions", source: "cloudarchitect", target: "solutions", animated: true },
+  { id: "e-aiml-solutions", source: "aiml", target: "solutions" },
+  { id: "e-aiml-productmgr", source: "aiml", target: "productmanager" },
+  { id: "e-pm-solutions", source: "pm", target: "solutions" },
+  { id: "e-pm-productmgr", source: "pm", target: "productmanager", animated: true },
+  { id: "e-gamedev-aiml", source: "gamedev", target: "aiml" },
+];
