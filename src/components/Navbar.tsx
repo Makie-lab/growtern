@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   Home,
@@ -8,7 +8,13 @@ import {
   LayoutGrid,
   GitBranch,
   Search,
+  User,
+  BookOpen,
+  GraduationCap,
+  Briefcase,
+  LogOut,
 } from "lucide-react";
+import { getUserPreferences, setUserPreferences, clearUserPreferences, type UserType } from "@/data/userTypes";
 
 type NavItem = {
   id: string;
@@ -25,11 +31,37 @@ const navItems: NavItem[] = [
   { id: "search", label: "Search", Icon: Search },
 ];
 
+const userTypeLabels: Record<UserType, { label: string; icon: typeof User }> = {
+  guest: { label: "Guest", icon: User },
+  student: { label: "Student", icon: BookOpen },
+  graduate: { label: "Graduate", icon: GraduationCap },
+  employee: { label: "Employee", icon: Briefcase },
+};
+
 export default function Navbar() {
   const [activeId, setActiveId] = useState<string>("home");
+  const [showPanel, setShowPanel] = useState(false);
+  const [userType, setUserType] = useState<UserType>("guest");
+  const panelRef = useRef<HTMLLIElement>(null);
   const pathname = usePathname();
   const router = useRouter();
   const isHome = pathname === "/";
+
+  useEffect(() => {
+    const prefs = getUserPreferences();
+    if (prefs) setUserType(prefs.userType);
+  }, []);
+
+  // Close panel on outside click
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+        setShowPanel(false);
+      }
+    }
+    if (showPanel) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showPanel]);
 
   useEffect(() => {
     if (!isHome) return;
@@ -50,10 +82,7 @@ export default function Navbar() {
           setActiveId(visible[0].target.id);
         }
       },
-      {
-        rootMargin: "-30% 0px -60% 0px",
-        threshold: 0,
-      }
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
     );
 
     targets.forEach((el) => observer.observe(el));
@@ -63,13 +92,10 @@ export default function Navbar() {
   const handleClick = useCallback(
     (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
-
       if (!isHome) {
-        // Navigate to home page with hash
         router.push(`/#${id}`);
         return;
       }
-
       const target = document.getElementById(id);
       if (target) {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -79,6 +105,21 @@ export default function Navbar() {
     },
     [isHome, router]
   );
+
+  const handleChangeType = (type: UserType) => {
+    setUserType(type);
+    setUserPreferences({ userType: type, createdAt: new Date().toISOString() });
+    setShowPanel(false);
+    window.location.reload();
+  };
+
+  const handleReset = () => {
+    clearUserPreferences();
+    setShowPanel(false);
+    window.location.reload();
+  };
+
+  const UserIcon = userTypeLabels[userType].icon;
 
   return (
     <nav
@@ -106,6 +147,77 @@ export default function Navbar() {
             </li>
           );
         })}
+
+        {/* Divider */}
+        <li className="w-px h-6 bg-black/10 mx-1" />
+
+        {/* User account button */}
+        <li className="relative" ref={panelRef}>
+          <button
+            onClick={() => setShowPanel(!showPanel)}
+            className={`nav-icon-btn group relative ${showPanel ? "nav-icon-btn--active" : ""}`}
+            aria-label="Account settings"
+            title="Account"
+          >
+            <UserIcon size={18} strokeWidth={2} />
+            <span className="nav-tooltip">Account</span>
+          </button>
+
+          {/* Dropdown panel */}
+          {showPanel && (
+            <div className="absolute top-full right-0 mt-3 w-[260px] bg-white/95 backdrop-blur-xl border border-black/10 rounded-2xl shadow-2xl p-4 animate-fade-in z-50">
+              {/* Current user info */}
+              <div className="flex items-center gap-3 mb-4 pb-3 border-b border-black/8">
+                <div className="w-10 h-10 rounded-xl bg-[#1e3a5f]/10 flex items-center justify-center">
+                  <UserIcon size={20} className="text-[#1e3a5f]" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold">{userTypeLabels[userType].label}</p>
+                  <p className="text-[10px] opacity-40">Current path</p>
+                </div>
+              </div>
+
+              {/* Switch user type */}
+              <p className="text-[10px] font-semibold uppercase tracking-wider opacity-40 mb-2">
+                Switch path
+              </p>
+              <div className="space-y-1 mb-3">
+                {(["student", "graduate", "employee"] as UserType[]).map((type) => {
+                  const { label, icon: TypeIcon } = userTypeLabels[type];
+                  const isActive = userType === type;
+                  return (
+                    <button
+                      key={type}
+                      onClick={() => handleChangeType(type)}
+                      className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-left transition-colors text-sm ${
+                        isActive
+                          ? "bg-[#1e3a5f]/10 font-semibold"
+                          : "hover:bg-black/[0.03]"
+                      }`}
+                    >
+                      <TypeIcon size={16} className={isActive ? "text-[#1e3a5f]" : "opacity-50"} />
+                      <span>{label}</span>
+                      {isActive && (
+                        <span className="ml-auto text-[9px] px-1.5 py-0.5 rounded-full bg-[#1e3a5f]/10 text-[#1e3a5f] font-semibold">
+                          Active
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Reset / Guest */}
+              <button
+                onClick={handleReset}
+                className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-left text-sm opacity-50 hover:opacity-100 hover:bg-red-50 hover:text-red-600 transition-all"
+              >
+                <LogOut size={16} />
+                <span>Reset to Guest</span>
+              </button>
+            </div>
+          )}
+        </li>
       </ul>
     </nav>
   );
