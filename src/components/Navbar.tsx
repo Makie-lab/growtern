@@ -6,28 +6,30 @@ import {
   Home,
   Sparkles,
   LayoutGrid,
-  GitBranch,
   Search,
   User,
   BookOpen,
   GraduationCap,
   Briefcase,
   LogOut,
+  Network,
 } from "lucide-react";
+import CompareIcon from "./CompareIcon";
 import { getUserPreferences, setUserPreferences, clearUserPreferences, type UserType } from "@/data/userTypes";
 
 type NavItem = {
   id: string;
   label: string;
-  Icon: typeof Home;
+  Icon: typeof Home | null;
+  customIcon?: boolean;
 };
 
 const navItems: NavItem[] = [
   { id: "home", label: "Home", Icon: Home },
   { id: "offerings", label: "Offerings", Icon: Sparkles },
   { id: "categories", label: "Categories", Icon: LayoutGrid },
-  { id: "compare", label: "Compare", Icon: GitBranch },
-  { id: "roles", label: "Roles", Icon: GitBranch },
+  { id: "compare", label: "Compare", Icon: null, customIcon: true },
+  { id: "roles", label: "Roles", Icon: Network },
   { id: "search", label: "Search", Icon: Search },
 ];
 
@@ -127,7 +129,7 @@ export default function Navbar() {
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50"
     >
       <ul className="nav-pill flex items-center gap-1 px-3 py-2">
-        {navItems.map(({ id, label, Icon }) => {
+        {navItems.map(({ id, label, Icon, customIcon }) => {
           const active = isHome && activeId === id;
           return (
             <li key={id}>
@@ -141,7 +143,11 @@ export default function Navbar() {
                   active ? "nav-icon-btn--active" : ""
                 }`}
               >
-                <Icon size={18} strokeWidth={2} />
+                {customIcon ? (
+                  <CompareIcon size={18} />
+                ) : Icon ? (
+                  <Icon size={18} strokeWidth={2} />
+                ) : null}
                 <span className="nav-tooltip">{label}</span>
               </a>
             </li>
