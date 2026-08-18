@@ -70,8 +70,8 @@ export default function OfferingsSection() {
       className="section-scroll max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 deco-lines relative overflow-hidden"
     >
       {/* Decorative squares */}
-      <div className="absolute top-16 right-8 w-14 h-14 border border-[#1e3a5f]/[0.06] rotate-[20deg] pointer-events-none hidden lg:block" />
-      <div className="absolute bottom-20 left-4 w-8 h-8 border border-[#1e3a5f]/[0.05] -rotate-12 pointer-events-none hidden lg:block" />
+      <div className="absolute top-16 right-8 w-14 h-14 border border-[#1e3a5f]/[0.25] rotate-[20deg] pointer-events-none hidden lg:block" />
+      <div className="absolute bottom-20 left-4 w-8 h-8 border border-[#1e3a5f]/[0.25] -rotate-12 pointer-events-none hidden lg:block" />
 
       <div className="mb-12 text-center">
         <p className="eyebrow mb-2">What GrowTern offers</p>

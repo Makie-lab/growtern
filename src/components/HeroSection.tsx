@@ -15,8 +15,8 @@ export default function HeroSection() {
       </div>
 
       {/* Decorative square - top left */}
-      <div className="absolute top-32 left-8 w-16 h-16 border border-[#1e3a5f]/[0.07] rotate-12 pointer-events-none hidden sm:block" />
-      <div className="absolute bottom-40 right-12 w-10 h-10 border border-[#1e3a5f]/[0.05] -rotate-6 pointer-events-none hidden sm:block" />
+      <div className="absolute top-32 left-8 w-16 h-16 border border-[#1e3a5f]/[0.3] rotate-12 pointer-events-none hidden sm:block" />
+      <div className="absolute bottom-40 right-12 w-10 h-10 border border-[#1e3a5f]/[0.25] -rotate-6 pointer-events-none hidden sm:block" />
 
       <div className="w-full max-w-6xl mx-auto flex flex-col items-start text-left animate-fade-in">
         {/* Logo mark */}

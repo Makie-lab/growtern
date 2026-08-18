@@ -61,9 +61,9 @@ body::before {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(30, 58, 95, 0.12) 10%,
-    rgba(30, 58, 95, 0.08) 50%,
-    rgba(30, 58, 95, 0.12) 90%,
+    rgba(30, 58, 95, 0.35) 10%,
+    rgba(30, 58, 95, 0.25) 50%,
+    rgba(30, 58, 95, 0.35) 90%,
     transparent 100%
   );
   pointer-events: none;
@@ -81,9 +81,9 @@ body::after {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(30, 58, 95, 0.05) 15%,
-    rgba(30, 58, 95, 0.04) 50%,
-    rgba(30, 58, 95, 0.05) 85%,
+    rgba(30, 58, 95, 0.15) 15%,
+    rgba(30, 58, 95, 0.12) 50%,
+    rgba(30, 58, 95, 0.15) 85%,
     transparent 100%
   );
   pointer-events: none;
@@ -437,7 +437,7 @@ textarea:focus-visible,
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(30, 58, 95, 0.2) 100%);
   border-radius: 2px;
 }
 
@@ -453,7 +453,7 @@ textarea:focus-visible,
   width: 12px;
   height: 12px;
   border: 2px solid var(--accent);
-  opacity: 0.15;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -484,7 +484,7 @@ textarea:focus-visible,
   width: 40px;
   height: 40px;
   border: 1.5px solid var(--accent);
-  opacity: 0.08;
+  opacity: 0.25;
   transform: rotate(15deg);
   pointer-events: none;
 }
@@ -497,7 +497,7 @@ textarea:focus-visible,
   width: 24px;
   height: 24px;
   border: 1.5px solid var(--accent);
-  opacity: 0.06;
+  opacity: 0.25;
   transform: rotate(-10deg);
   pointer-events: none;
 }
@@ -515,7 +515,7 @@ textarea:focus-visible,
   width: 120px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.1;
+  opacity: 0.3;
   transform: rotate(-5deg);
   pointer-events: none;
 }
@@ -528,7 +528,7 @@ textarea:focus-visible,
   width: 80px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.08;
+  opacity: 0.25;
   transform: rotate(3deg);
   pointer-events: none;
 }
@@ -546,7 +546,7 @@ textarea:focus-visible,
   font-size: 18px;
   font-weight: 300;
   color: var(--accent);
-  opacity: 0.12;
+  opacity: 0.3;
   pointer-events: none;
 }
 
@@ -558,13 +558,13 @@ textarea:focus-visible,
   font-size: 14px;
   font-weight: 300;
   color: var(--accent);
-  opacity: 0.08;
+  opacity: 0.25;
   pointer-events: none;
 }
 
 /* Paragraph with left line border */
 .para-bordered {
-  border-left: 2px solid rgba(30, 58, 95, 0.12);
+  border-left: 2px solid rgba(30, 58, 95, 0.3);
   padding-left: 16px;
 }
 
@@ -582,7 +582,7 @@ textarea:focus-visible,
   height: 60px;
   border: 1.5px dashed var(--accent);
   border-radius: 50%;
-  opacity: 0.06;
+  opacity: 0.25;
   pointer-events: none;
 }
 
@@ -593,7 +593,7 @@ textarea:focus-visible,
   width: 10px;
   height: 10px;
   border: 1.5px solid var(--accent);
-  opacity: 0.1;
+  opacity: 0.3;
   transform: rotate(45deg);
   pointer-events: none;
   top: 50%;
@@ -608,7 +608,7 @@ textarea:focus-visible,
 .deco-hr {
   position: relative;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(30, 58, 95, 0.12), transparent);
+  background: linear-gradient(90deg, transparent, rgba(30, 58, 95, 0.3), transparent);
   border: none;
   margin: 48px 0;
 }
@@ -620,9 +620,29 @@ textarea:focus-visible,
   left: 50%;
   width: 8px;
   height: 8px;
-  border: 1.5px solid rgba(30, 58, 95, 0.2);
+  border: 1.5px solid rgba(30, 58, 95, 0.4);
   transform: translate(-50%, -50%) rotate(45deg);
   background: var(--background);
+}
+
+/* Circle node on the left line between sections */
+.deco-hr::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(30, 58, 95, 0.35);
+  border-radius: 50%;
+  background: var(--background);
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 768px) {
+  .deco-hr::after {
+    left: 12px;
+  }
 }
 
 /* Bracket decorations [ ] around elements */
@@ -640,7 +660,7 @@ textarea:focus-visible,
   font-size: 28px;
   font-weight: 200;
   color: var(--accent);
-  opacity: 0.15;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -653,7 +673,7 @@ textarea:focus-visible,
   font-size: 28px;
   font-weight: 200;
   color: var(--accent);
-  opacity: 0.15;
+  opacity: 0.35;
   pointer-events: none;
 }
 
