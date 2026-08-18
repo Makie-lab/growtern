@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import Skyline from "@/components/Skyline";
 import OfferingsSection from "@/components/OfferingsSection";
 import CategoriesSection from "@/components/CategoriesSection";
 import RoleComparison from "@/components/RoleComparison";
@@ -19,7 +20,12 @@ export default function Home() {
       <UserSelection />
       <Navbar />
       <HeroSection />
-      <DecoHr />
+
+      {/* Skyline visual after intro */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-8">
+        <Skyline />
+      </div>
+
       <OfferingsSection />
       <DecoHr />
       <CategoriesSection />
