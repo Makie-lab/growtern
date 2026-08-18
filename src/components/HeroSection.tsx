@@ -7,12 +7,16 @@ export default function HeroSection() {
     <section
       id="home"
       aria-label="Introduction"
-      className="section-scroll min-h-[calc(100vh-2rem)] flex items-center px-4 pt-24 pb-16 sm:pt-28 relative overflow-hidden"
+      className="section-scroll min-h-[calc(100vh-2rem)] flex items-center px-4 pt-24 pb-16 sm:pt-28 relative overflow-hidden deco-squares"
     >
       {/* Tern flock decoration - top right */}
       <div className="absolute top-20 right-0 w-[300px] sm:w-[400px] opacity-40 pointer-events-none">
         <TernFlock color="#1e3a5f" />
       </div>
+
+      {/* Decorative square - top left */}
+      <div className="absolute top-32 left-8 w-16 h-16 border border-[#1e3a5f]/[0.07] rotate-12 pointer-events-none hidden sm:block" />
+      <div className="absolute bottom-40 right-12 w-10 h-10 border border-[#1e3a5f]/[0.05] -rotate-6 pointer-events-none hidden sm:block" />
 
       <div className="w-full max-w-6xl mx-auto flex flex-col items-start text-left animate-fade-in">
         {/* Logo mark */}
@@ -21,7 +25,7 @@ export default function HeroSection() {
         </div>
 
         {/* Brand name */}
-        <h1 className="text-7xl sm:text-8xl lg:text-9xl leading-none tracking-tighter mb-5">
+        <h1 className="text-7xl sm:text-8xl lg:text-9xl leading-none tracking-tighter mb-5 deco-corner">
           <span className="font-black">Grow</span>
           <span
             className="font-bold italic"
@@ -35,7 +39,7 @@ export default function HeroSection() {
         </h1>
 
         {/* Tagline */}
-        <p className="text-2xl sm:text-3xl opacity-70 mb-3 max-w-2xl">
+        <p className="text-2xl sm:text-3xl opacity-70 mb-3 max-w-2xl para-bordered">
           Free resources to{" "}
           <span
             className="font-serif italic"

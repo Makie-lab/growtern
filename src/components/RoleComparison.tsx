@@ -24,11 +24,11 @@ export default function RoleComparison() {
     <section
       id="compare"
       aria-label="Compare roles"
-      className="section-scroll max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24"
+      className="section-scroll max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 deco-circle relative overflow-hidden"
     >
       <div className="mb-10 text-center">
         <p className="eyebrow mb-2">Compare roles</p>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 inline-block section-accent pl-5">
           Industry role{" "}
           <span
             className="font-serif italic"

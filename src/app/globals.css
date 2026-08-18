@@ -373,3 +373,183 @@ textarea:focus-visible,
 
 .btn-secondary:hover { background: var(--tint); }
 .btn-secondary:active { transform: scale(0.98); }
+
+/* ==============================
+   Decorative Visual Assets
+   ============================== */
+
+/* Left accent border line for section headings */
+.section-accent {
+  position: relative;
+  padding-left: 20px;
+}
+
+.section-accent::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+  border-radius: 2px;
+}
+
+/* Decorative corner squares */
+.deco-corner {
+  position: relative;
+}
+
+.deco-corner::before,
+.deco-corner::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--accent);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.deco-corner::before {
+  top: -6px;
+  left: -6px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.deco-corner::after {
+  bottom: -6px;
+  right: -6px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Decorative floating squares - scattered around sections */
+.deco-squares {
+  position: relative;
+}
+
+.deco-squares::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--accent);
+  opacity: 0.08;
+  transform: rotate(15deg);
+  pointer-events: none;
+}
+
+.deco-squares::after {
+  content: "";
+  position: absolute;
+  bottom: 60px;
+  left: -30px;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--accent);
+  opacity: 0.06;
+  transform: rotate(-10deg);
+  pointer-events: none;
+}
+
+/* Decorative diagonal lines behind sections */
+.deco-lines {
+  position: relative;
+}
+
+.deco-lines::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 0;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.1;
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+.deco-lines::after {
+  content: "";
+  position: absolute;
+  bottom: 30%;
+  left: 0;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.08;
+  transform: rotate(3deg);
+  pointer-events: none;
+}
+
+/* Cross/plus decorative marks */
+.deco-cross {
+  position: relative;
+}
+
+.deco-cross::before {
+  content: "+";
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--accent);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.deco-cross::after {
+  content: "+";
+  position: absolute;
+  bottom: 10px;
+  left: 30px;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--accent);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Paragraph with left line border */
+.para-bordered {
+  border-left: 2px solid rgba(30, 58, 95, 0.12);
+  padding-left: 16px;
+}
+
+/* Dotted circle decorative element */
+.deco-circle {
+  position: relative;
+}
+
+.deco-circle::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  width: 60px;
+  height: 60px;
+  border: 1.5px dashed var(--accent);
+  border-radius: 50%;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* Small diamond shape */
+.deco-diamond::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--accent);
+  opacity: 0.1;
+  transform: rotate(45deg);
+  pointer-events: none;
+  top: 50%;
+  left: -20px;
+}

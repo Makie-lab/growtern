@@ -5,7 +5,7 @@ export default function CTASection() {
     <section
       id="cta"
       aria-label="Get started"
-      className="section-scroll max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24"
+      className="section-scroll max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 deco-diamond relative"
     >
       <div className="glass-card p-10 sm:p-14 text-center relative overflow-hidden">
         {/* Decorative gradient blob */}

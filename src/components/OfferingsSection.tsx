@@ -67,8 +67,12 @@ export default function OfferingsSection() {
     <section
       id="offerings"
       aria-label="What we offer"
-      className="section-scroll max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24"
+      className="section-scroll max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 deco-lines relative overflow-hidden"
     >
+      {/* Decorative squares */}
+      <div className="absolute top-16 right-8 w-14 h-14 border border-[#1e3a5f]/[0.06] rotate-[20deg] pointer-events-none hidden lg:block" />
+      <div className="absolute bottom-20 left-4 w-8 h-8 border border-[#1e3a5f]/[0.05] -rotate-12 pointer-events-none hidden lg:block" />
+
       <div className="mb-12 text-center">
         <p className="eyebrow mb-2">What GrowTern offers</p>
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
@@ -81,7 +85,7 @@ export default function OfferingsSection() {
           </span>{" "}
           free
         </h2>
-        <p className="text-base opacity-60 max-w-2xl mx-auto">
+        <p className="text-base opacity-60 max-w-2xl mx-auto para-bordered">
           We curate the best free resources across Asia-Pacific so you can focus on
           learning and growing — not searching or paying.
         </p>
