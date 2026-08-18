@@ -29,17 +29,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1a1a1a;
+    --background: #2c2c2c;
     --foreground: #ffffff;
     --muted: rgba(255, 255, 255, 0.65);
     --hairline: rgba(255, 255, 255, 0.12);
     --hairline-strong: rgba(255, 255, 255, 0.2);
-    --surface: rgba(40, 40, 40, 0.9);
+    --surface: rgba(55, 55, 55, 0.9);
     --tint: rgba(255, 255, 255, 0.06);
-    --glass-bg: rgba(38, 38, 38, 0.9);
-    --glass-bg-nav: rgba(26, 26, 26, 0.95);
+    --glass-bg: rgba(50, 50, 50, 0.92);
+    --glass-bg-nav: rgba(40, 40, 40, 0.95);
     --glass-border: rgba(255, 255, 255, 0.12);
-    --glass-shadow: rgba(0, 0, 0, 0.5);
+    --glass-shadow: rgba(0, 0, 0, 0.4);
     --accent: #7db4d8;
   }
 }
@@ -194,7 +194,7 @@ body::after {
 
 @media (prefers-color-scheme: dark) {
   .nav-pill {
-    background: rgba(26, 26, 26, 0.95);
+    background: rgba(40, 40, 40, 0.95);
     border-color: rgba(255, 255, 255, 0.12);
     box-shadow:
       0 1px 2px rgba(0, 0, 0, 0.3),
@@ -202,19 +202,19 @@ body::after {
   }
 
   .glass-card {
-    background: rgba(38, 38, 38, 0.95);
+    background: rgba(50, 50, 50, 0.95);
     border-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
 
   .glass-card-subtle {
-    background: rgba(38, 38, 38, 0.8);
+    background: rgba(50, 50, 50, 0.8);
     border-color: rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   }
 
   .chip {
-    background: #2a2a2a;
+    background: #363636;
     border-color: rgba(255, 255, 255, 0.12);
     color: #ffffff;
   }
@@ -225,13 +225,13 @@ body::after {
 
   .chip--active {
     background: #ffffff;
-    color: #1a1a1a;
+    color: #363636;
     border-color: #ffffff;
   }
 
   .btn-primary {
     background: #ffffff;
-    color: #1a1a1a;
+    color: #363636;
   }
 
   .btn-secondary {
@@ -267,7 +267,7 @@ body::after {
   /* Fix dropdown menus */
   .glass-card select,
   button[class*="rounded-2xl"][class*="border"] {
-    background: #2a2a2a;
+    background: #363636;
     color: #ffffff;
     border-color: rgba(255, 255, 255, 0.12);
   }
@@ -283,20 +283,20 @@ body::after {
 
   /* Fix marquee fade edges */
   [class*="from-white"] {
-    --tw-gradient-from: #1a1a1a !important;
+    --tw-gradient-from: #2a2a2a !important;
   }
 
   [class*="bg-gradient-to-r"][class*="from-white"] {
-    background: linear-gradient(to right, #1a1a1a, transparent) !important;
+    background: linear-gradient(to right, #2a2a2a, transparent) !important;
   }
 
   [class*="bg-gradient-to-l"][class*="from-white"] {
-    background: linear-gradient(to left, #1a1a1a, transparent) !important;
+    background: linear-gradient(to left, #2a2a2a, transparent) !important;
   }
 
   /* Fix ReactFlow dark mode */
   .react-flow {
-    background: #1a1a1a !important;
+    background: #2a2a2a !important;
   }
 
   .react-flow__node {
@@ -417,21 +417,21 @@ body::after {
 
   .nav-icon-btn--active {
     background: #ffffff;
-    color: #1a1a1a;
+    color: #363636;
   }
 
   .nav-icon-btn--active:hover {
     background: #ffffff;
-    color: #1a1a1a;
+    color: #363636;
   }
 
   .nav-tooltip {
     background: #ffffff;
-    color: #1a1a1a;
+    color: #363636;
   }
 
   .marquee-content .chip {
-    background: #2a2a2a;
+    background: #363636;
     color: #ffffff;
   }
 }
