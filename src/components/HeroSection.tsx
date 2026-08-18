@@ -65,14 +65,16 @@ export default function HeroSection() {
           </a>
         </div>
 
-        {/* Scroll indicator */}
-        <a
-          href="#offerings"
-          aria-label="Scroll to offerings"
-          className="opacity-40 hover:opacity-70 transition-opacity"
-        >
-          <ArrowDown size={20} className="animate-bounce" />
-        </a>
+        {/* Scroll indicator - centered under the whole intro */}
+        <div className="w-full flex justify-center">
+          <a
+            href="#offerings"
+            aria-label="Scroll to offerings"
+            className="opacity-40 hover:opacity-70 transition-opacity"
+          >
+            <ArrowDown size={20} className="animate-bounce" />
+          </a>
+        </div>
       </div>
     </section>
   );

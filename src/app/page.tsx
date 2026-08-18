@@ -22,7 +22,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Skyline visual after intro */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 mb-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-14 mb-4">
         <Skyline />
       </div>
 

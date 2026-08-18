@@ -19,38 +19,52 @@ export default function TernLogo({
       className={className}
       aria-label="GrowTern logo"
     >
-      {/* Tern bird in flight - single color, elegant silhouette */}
+      {/* Tern / Sternidae bird in flight - clean outline silhouette */}
+      {/* Body and head */}
       <path
-        d="M8 36c2-1 6-2 10-1.5C22 35 26 37 28 38c2 1 4.5 1.5 7 1 3-.6 5-2 7-4 1.5-1.5 3-3.5 4-6 .8-2 1.2-4 1-6-.2-2-1-3.5-2.5-4.5-1.5-1-3.5-1.2-5.5-.5-1.5.5-3 1.5-4 3-.8 1.2-1.2 2.5-1 4 .2 1.2.8 2 1.8 2.6 1 .6 2.2.6 3.2.1.8-.4 1.4-1 1.6-1.8"
-        stroke={color}
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Wing sweep */}
-      <path
-        d="M18 34.5c4-6 10-11 17-13.5 4-1.4 8-1.8 11.5-1"
-        stroke={color}
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Tail fork */}
-      <path
-        d="M8 36c1 2 2.5 4.5 5 6.5M8 36c-0.5 3 0 6 1.5 8.5"
-        stroke={color}
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* Long wing feather */}
-      <path
-        d="M28 38c6-1 13-4.5 18-10"
+        d="M12 34c4-1 9-1.5 14-0.5 5 1 9 3.5 12 5.5 2.5 1.5 5.5 2 8.5 1.2 3.5-1 6-3 8-5.5 1.8-2.2 3-5 2.8-7.8-.2-2.5-1.5-4.5-3.5-5.8-2.2-1.3-5-1.5-7.5-.2-2 1-3.5 2.8-4.2 5"
         stroke={color}
         strokeWidth="2"
         strokeLinecap="round"
-        opacity="0.6"
+        strokeLinejoin="round"
       />
+      {/* Swept wing - left */}
+      <path
+        d="M12 34c2-5 6-10 12-14 4-2.5 8.5-4 13-4.5"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {/* Swept wing - right extension */}
+      <path
+        d="M46 26c3-0.5 6-0.2 8.5 1"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      {/* Forked tail */}
+      <path
+        d="M12 34c-1.5 3-2 6-1 9"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 34c-2.5 2-4 5-4 8.5"
+        stroke={color}
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      {/* Beak */}
+      <path
+        d="M42.5 21c2-0.5 4 0 5.5 1"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      {/* Eye dot */}
+      <circle cx="43" cy="22.5" r="1" fill={color} />
     </svg>
   );
 }

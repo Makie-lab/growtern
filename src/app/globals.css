@@ -55,7 +55,7 @@ body::before {
   content: "";
   position: fixed;
   top: 0;
-  bottom: 0;
+  bottom: 120px;
   left: 32px;
   width: 1px;
   background: linear-gradient(
@@ -63,7 +63,7 @@ body::before {
     transparent 0%,
     rgba(30, 58, 95, 0.35) 10%,
     rgba(30, 58, 95, 0.25) 50%,
-    rgba(30, 58, 95, 0.35) 90%,
+    rgba(30, 58, 95, 0.35) 85%,
     transparent 100%
   );
   pointer-events: none;
@@ -75,7 +75,7 @@ body::after {
   content: "";
   position: fixed;
   top: 0;
-  bottom: 0;
+  bottom: 120px;
   left: 36px;
   width: 1px;
   background: linear-gradient(
@@ -83,7 +83,7 @@ body::after {
     transparent 0%,
     rgba(30, 58, 95, 0.15) 15%,
     rgba(30, 58, 95, 0.12) 50%,
-    rgba(30, 58, 95, 0.15) 85%,
+    rgba(30, 58, 95, 0.15) 80%,
     transparent 100%
   );
   pointer-events: none;
