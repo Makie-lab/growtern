@@ -47,6 +47,52 @@ body {
     radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.04) 1px, transparent 0);
   background-size: 22px 22px;
   background-attachment: fixed;
+  position: relative;
+}
+
+/* Persistent vertical line - left side, top to bottom */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 32px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(30, 58, 95, 0.12) 10%,
+    rgba(30, 58, 95, 0.08) 50%,
+    rgba(30, 58, 95, 0.12) 90%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Secondary thinner line */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 36px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(30, 58, 95, 0.05) 15%,
+    rgba(30, 58, 95, 0.04) 50%,
+    rgba(30, 58, 95, 0.05) 85%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  body::before { left: 12px; }
+  body::after { left: 16px; }
 }
 
 .font-serif {
@@ -552,4 +598,188 @@ textarea:focus-visible,
   pointer-events: none;
   top: 50%;
   left: -20px;
+}
+
+/* ==============================
+   Additional Decorative Graphics
+   ============================== */
+
+/* Horizontal rule with diamond center */
+.deco-hr {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(30, 58, 95, 0.12), transparent);
+  border: none;
+  margin: 48px 0;
+}
+
+.deco-hr::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid rgba(30, 58, 95, 0.2);
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--background);
+}
+
+/* Bracket decorations [ ] around elements */
+.deco-bracket {
+  position: relative;
+  padding: 0 24px;
+}
+
+.deco-bracket::before {
+  content: "[";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  font-weight: 200;
+  color: var(--accent);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.deco-bracket::after {
+  content: "]";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  font-weight: 200;
+  color: var(--accent);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Scattered dots pattern */
+.deco-dots {
+  position: relative;
+}
+
+.deco-dots::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-image: radial-gradient(circle, rgba(30, 58, 95, 0.12) 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
+.deco-dots::after {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  background-image: radial-gradient(circle, rgba(30, 58, 95, 0.08) 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
+/* Triangle arrow decoration */
+.deco-arrow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -24px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid rgba(30, 58, 95, 0.12);
+  pointer-events: none;
+}
+
+/* Hash/grid decoration */
+.deco-grid {
+  position: relative;
+}
+
+.deco-grid::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 48px;
+  height: 48px;
+  background-image:
+    linear-gradient(rgba(30, 58, 95, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 95, 0.06) 1px, transparent 1px);
+  background-size: 12px 12px;
+  pointer-events: none;
+}
+
+/* Zigzag line decoration */
+.deco-zigzag::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 4px,
+    rgba(30, 58, 95, 0.06) 4px,
+    rgba(30, 58, 95, 0.06) 5px
+  );
+  pointer-events: none;
+}
+
+/* Vertical tick marks along the left line */
+.deco-ticks {
+  position: relative;
+}
+
+.deco-ticks::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -20px;
+  bottom: 0;
+  width: 8px;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 80px,
+    rgba(30, 58, 95, 0.08) 80px,
+    rgba(30, 58, 95, 0.08) 81px
+  );
+  pointer-events: none;
+}
+
+/* Circular rings */
+.deco-rings::before {
+  content: "";
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 80px;
+  height: 80px;
+  border: 1.5px solid rgba(30, 58, 95, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.deco-rings::after {
+  content: "";
+  position: absolute;
+  bottom: 45px;
+  right: 45px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(30, 58, 95, 0.04);
+  border-radius: 50%;
+  pointer-events: none;
 }

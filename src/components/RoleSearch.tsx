@@ -41,7 +41,7 @@ export default function RoleSearch() {
     <section
       id="search"
       aria-label="Search by role"
-      className="section-scroll max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 deco-lines relative overflow-hidden"
+      className="section-scroll max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 deco-lines deco-grid relative overflow-hidden"
     >
       <div className="mb-10 text-center">
         <p className="eyebrow mb-2">Find your path</p>
