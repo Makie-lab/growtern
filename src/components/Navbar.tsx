@@ -73,6 +73,28 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  // Restore active state from URL hash on mount
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash && navItems.some((n) => n.id === hash)) {
+      setActiveId(hash);
+    }
+  }, []);
+
+  // Listen for popstate (browser back/forward)
+  useEffect(() => {
+    function handlePopState() {
+      const hash = window.location.hash.replace("#", "");
+      if (hash && navItems.some((n) => n.id === hash)) {
+        setActiveId(hash);
+      } else {
+        setActiveId("home");
+      }
+    }
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
   useEffect(() => {
     const prefs = getUserPreferences();
     if (prefs) setUserType(prefs.userType);
@@ -155,7 +177,7 @@ export default function Navbar() {
     <nav aria-label="Primary" className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
       <ul className="nav-pill flex items-center gap-1 px-3 py-2">
         {navItems.map(({ id, label, Icon, customIcon }) => {
-          const active = isHome && activeId === id;
+          const active = activeId === id;
           return (
             <li key={id}>
               <a
@@ -164,7 +186,7 @@ export default function Navbar() {
                 aria-current={active ? "page" : undefined}
                 title={label}
                 onClick={handleClick(id)}
-                className={`nav-icon-btn group relative ${active ? "nav-icon-btn--active" : ""}`}
+                className={`nav-icon-btn group relative ${active && isHome ? "nav-icon-btn--active" : ""}`}
               >
                 {customIcon ? <CompareIcon size={18} /> : Icon ? <Icon size={18} strokeWidth={2} /> : null}
                 <span className="nav-tooltip">{label}</span>
