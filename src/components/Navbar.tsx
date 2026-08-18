@@ -155,7 +155,7 @@ export default function Navbar() {
         })}
 
         {/* Divider */}
-        <li className="w-px h-6 bg-black/10 mx-1" />
+        <li className="w-px h-6 bg-[var(--hairline)] mx-1" />
 
         {/* User account button */}
         <li className="relative" ref={panelRef}>
@@ -171,7 +171,7 @@ export default function Navbar() {
 
           {/* Dropdown panel */}
           {showPanel && (
-            <div className="absolute top-full right-0 mt-3 w-[260px] bg-white/95 backdrop-blur-xl border border-black/10 rounded-2xl shadow-2xl p-4 animate-fade-in z-50">
+            <div className="absolute top-full right-0 mt-3 w-[260px] bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] rounded-2xl shadow-2xl p-4 animate-fade-in z-50">
               {/* Current user info */}
               <div className="flex items-center gap-3 mb-4 pb-3 border-b border-black/8">
                 <div className="w-10 h-10 rounded-xl bg-[#1e3a5f]/10 flex items-center justify-center">
@@ -198,7 +198,7 @@ export default function Navbar() {
                       className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-left transition-colors text-sm ${
                         isActive
                           ? "bg-[#1e3a5f]/10 font-semibold"
-                          : "hover:bg-black/[0.03]"
+                          : "hover:bg-[var(--tint)]"
                       }`}
                     >
                       <TypeIcon size={16} className={isActive ? "text-[#1e3a5f]" : "opacity-50"} />

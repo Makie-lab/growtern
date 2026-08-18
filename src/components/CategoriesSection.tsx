@@ -54,10 +54,9 @@ export default function CategoriesSection() {
             >
               <div className="flex items-center justify-between">
                 <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center"
-                  style={{ background: "rgba(30, 58, 95, 0.1)" }}
+                  className="w-11 h-11 rounded-xl flex items-center justify-center accent-bg"
                 >
-                  <Icon size={22} style={{ color: "#1e3a5f" }} />
+                  <Icon size={22} className="accent-icon" />
                 </div>
                 <ArrowRight
                   size={16}

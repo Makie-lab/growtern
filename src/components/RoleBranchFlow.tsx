@@ -168,12 +168,12 @@ export default function RoleBranchFlow() {
 
       {selectedNode && selectedResources.length > 0 && (
         <div className="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:bottom-4 sm:w-[320px] z-10 animate-fade-in">
-          <div className="bg-white/95 backdrop-blur-xl border border-black/10 rounded-2xl shadow-2xl p-4 max-h-[280px] overflow-y-auto">
+          <div className="bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] rounded-2xl shadow-2xl p-4 max-h-[280px] overflow-y-auto">
             <div className="flex items-center justify-between mb-3">
               <h4 className="text-sm font-bold">{selectedNode.data.label}</h4>
               <button
                 onClick={onPaneClick}
-                className="text-[10px] opacity-40 hover:opacity-100 px-2 py-0.5 rounded-full border border-black/10"
+                className="text-[10px] opacity-40 hover:opacity-100 px-2 py-0.5 rounded-full border border-[var(--hairline-strong)]"
               >
                 ✕
               </button>
@@ -188,7 +188,7 @@ export default function RoleBranchFlow() {
                   href={r.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-black/[0.03] transition-colors group"
+                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-[var(--tint)] transition-colors group"
                 >
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-medium truncate">{r.title}</p>

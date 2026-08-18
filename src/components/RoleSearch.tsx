@@ -61,7 +61,7 @@ export default function RoleSearch() {
 
       {/* Search bar for roles - always visible */}
       <div className="max-w-xl mx-auto mb-8">
-        <div className="flex items-center gap-3 px-5 py-3.5 rounded-full border border-[var(--hairline-strong)] bg-white shadow-sm transition-shadow focus-within:shadow-md focus-within:border-black/20">
+        <div className="flex items-center gap-3 px-5 py-3.5 rounded-full border border-[var(--hairline-strong)] bg-[var(--background)] shadow-sm transition-shadow focus-within:shadow-md focus-within:border-[var(--accent)]">
           <Search size={18} className="opacity-40 flex-shrink-0" />
           <input
             type="text"
@@ -84,8 +84,8 @@ export default function RoleSearch() {
       {/* Animated marquee ticker - roles scroll right to left */}
       <div className="relative overflow-hidden mb-8 py-2">
         {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none" style={{ background: "linear-gradient(to right, var(--background), transparent)" }} />
+        <div className="absolute right-0 top-0 bottom-0 w-12 z-10 pointer-events-none" style={{ background: "linear-gradient(to left, var(--background), transparent)" }} />
 
         <div className="marquee-track">
           <div className="marquee-content">
@@ -110,7 +110,7 @@ export default function RoleSearch() {
       {selectedRole && (
         <div className="animate-fade-in">
           <div className="max-w-xl mx-auto mb-6">
-            <div className="flex items-center gap-3 px-5 py-3 rounded-full border border-[var(--hairline-strong)] bg-white shadow-sm">
+            <div className="flex items-center gap-3 px-5 py-3 rounded-full border border-[var(--hairline-strong)] bg-[var(--background)] shadow-sm">
               <Search size={16} className="opacity-40 flex-shrink-0" />
               <input
                 type="text"

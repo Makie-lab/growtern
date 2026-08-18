@@ -38,7 +38,7 @@ export default function UserSelection() {
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 animate-fade-in">
+      <div className="relative bg-[var(--background)] rounded-3xl shadow-2xl max-w-md w-full p-8 animate-fade-in">
         {step === "initial" && (
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-2">Welcome to GrowTern</h2>

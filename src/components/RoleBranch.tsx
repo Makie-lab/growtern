@@ -48,7 +48,7 @@ export default function RoleBranch() {
       </div>
 
       {/* Flow diagram */}
-      <div className="w-full h-[550px] sm:h-[650px] lg:h-[750px] rounded-2xl overflow-hidden border border-[var(--hairline)] bg-gradient-to-b from-white to-gray-50/50 shadow-sm">
+      <div className="w-full h-[550px] sm:h-[650px] lg:h-[750px] rounded-2xl overflow-hidden border border-[var(--hairline)] bg-[var(--background)] shadow-sm">
         <ReactFlowProvider>
           <RoleBranchFlow />
         </ReactFlowProvider>

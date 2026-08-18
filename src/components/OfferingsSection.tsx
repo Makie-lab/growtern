@@ -103,10 +103,9 @@ export default function OfferingsSection() {
             >
               <div className="flex items-center justify-between mb-3">
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center"
-                  style={{ background: "rgba(30, 58, 95, 0.1)" }}
+                  className="w-10 h-10 rounded-xl flex items-center justify-center accent-bg"
                 >
-                  <offering.icon size={20} style={{ color: "#1e3a5f" }} />
+                  <offering.icon size={20} className="accent-icon" />
                 </div>
                 <ArrowRight
                   size={14}
