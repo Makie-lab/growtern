@@ -28,7 +28,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light-mode) {
     --background: #2c2c2c;
     --foreground: #ffffff;
     --muted: rgba(255, 255, 255, 0.65);
@@ -42,6 +42,22 @@
     --glass-shadow: rgba(0, 0, 0, 0.4);
     --accent: #7db4d8;
   }
+}
+
+/* Force dark mode via class (user preference) */
+:root.dark-mode {
+  --background: #2c2c2c;
+  --foreground: #ffffff;
+  --muted: rgba(255, 255, 255, 0.65);
+  --hairline: rgba(255, 255, 255, 0.12);
+  --hairline-strong: rgba(255, 255, 255, 0.2);
+  --surface: rgba(55, 55, 55, 0.9);
+  --tint: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(50, 50, 50, 0.92);
+  --glass-bg-nav: rgba(40, 40, 40, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: rgba(0, 0, 0, 0.4);
+  --accent: #7db4d8;
 }
 
 html {
@@ -1089,4 +1105,98 @@ textarea:focus-visible,
   border: 1px solid rgba(30, 58, 95, 0.04);
   border-radius: 50%;
   pointer-events: none;
+}
+
+/* ==============================
+   Class-based dark mode (user preference override)
+   Mirrors all prefers-color-scheme: dark rules
+   ============================== */
+:root.dark-mode body {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+}
+
+:root.dark-mode body::before {
+  background: linear-gradient(180deg, transparent 0%, rgba(125, 180, 216, 0.25) 10%, rgba(125, 180, 216, 0.15) 50%, rgba(125, 180, 216, 0.25) 85%, transparent 100%);
+}
+
+:root.dark-mode body::after {
+  background: linear-gradient(180deg, transparent 0%, rgba(125, 180, 216, 0.1) 15%, rgba(125, 180, 216, 0.07) 50%, rgba(125, 180, 216, 0.1) 80%, transparent 100%);
+}
+
+:root.dark-mode .nav-pill {
+  background: rgba(40, 40, 40, 0.95);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 12px 40px rgba(0,0,0,0.5);
+}
+
+:root.dark-mode .glass-card {
+  background: rgba(50, 50, 50, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+:root.dark-mode .glass-card-subtle {
+  background: rgba(50, 50, 50, 0.8);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+:root.dark-mode .chip {
+  background: #363636;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+:root.dark-mode .chip:hover { background: #404040; }
+
+:root.dark-mode .chip--active {
+  background: #ffffff;
+  color: #363636;
+  border-color: #ffffff;
+}
+
+:root.dark-mode .btn-primary { background: #ffffff; color: #363636; }
+:root.dark-mode .btn-secondary { border-color: rgba(255,255,255,0.2); color: #ffffff; }
+:root.dark-mode .btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+:root.dark-mode .nav-icon-btn { color: #ffffff; }
+:root.dark-mode .nav-icon-btn:hover { background: rgba(255,255,255,0.1); }
+:root.dark-mode .nav-icon-btn--active { background: #ffffff; color: #363636; }
+:root.dark-mode .nav-icon-btn--active:hover { background: #ffffff; color: #363636; }
+:root.dark-mode .nav-tooltip { background: #ffffff; color: #363636; }
+
+:root.dark-mode input { color: #ffffff; }
+:root.dark-mode input::placeholder { color: rgba(255,255,255,0.4); }
+
+:root.dark-mode .accent-text { color: #7db4d8; }
+:root.dark-mode .accent-bg { background: rgba(125, 180, 216, 0.15); }
+:root.dark-mode .accent-icon { color: #7db4d8; }
+
+:root.dark-mode .deco-corner::before,
+:root.dark-mode .deco-corner::after { border-color: rgba(125, 180, 216, 0.3); }
+:root.dark-mode .para-bordered { border-left-color: rgba(125, 180, 216, 0.3); }
+:root.dark-mode .deco-hr { background: linear-gradient(90deg, transparent, rgba(125, 180, 216, 0.3), transparent); }
+:root.dark-mode .deco-hr::before { border-color: rgba(125, 180, 216, 0.4); background: var(--background); }
+:root.dark-mode .deco-hr::after { border-color: rgba(125, 180, 216, 0.35); background: var(--background); }
+
+:root.dark-mode .glass-hover:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+
+:root.dark-mode .react-flow { background: #2c2c2c !important; }
+:root.dark-mode .react-flow__controls { background: #363636 !important; border-color: rgba(255,255,255,0.1) !important; }
+:root.dark-mode .react-flow__controls button { background: #363636 !important; border-color: rgba(255,255,255,0.1) !important; fill: #ffffff !important; }
+:root.dark-mode .react-flow__minimap { background: #363636 !important; border-color: rgba(255,255,255,0.1) !important; }
+
+:root.dark-mode .marquee-content .chip { background: #363636; color: #ffffff; }
+
+/* Force light mode via class - undo system dark */
+:root.light-mode .nav-pill,
+:root.light-mode .glass-card,
+:root.light-mode .glass-card-subtle,
+:root.light-mode .chip,
+:root.light-mode .btn-primary,
+:root.light-mode .btn-secondary,
+:root.light-mode .nav-icon-btn,
+:root.light-mode .nav-icon-btn--active {
+  /* These use :root CSS vars which are already light by default */
 }
