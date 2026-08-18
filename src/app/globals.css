@@ -724,6 +724,122 @@ textarea:focus-visible,
 .btn-secondary:active { transform: scale(0.98); }
 
 /* ==============================
+   Compare Role Selectors
+   ============================== */
+.compare-selector {
+  background: #f5f7fa;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  color: #1a1a2e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.compare-selector:hover {
+  border-color: rgba(30, 58, 95, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.compare-dropdown {
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.compare-dropdown-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: #2d3748;
+}
+
+.compare-dropdown-item:hover {
+  background: #f5f7fa;
+}
+
+.compare-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .compare-selector {
+    background: #3a3a3a;
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .compare-selector:hover {
+    border-color: rgba(125, 180, 216, 0.4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .compare-dropdown {
+    background: #333333;
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .compare-dropdown-item {
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+  }
+
+  .compare-dropdown-item:hover {
+    background: #3a3a3a;
+  }
+}
+
+:root.dark-mode .compare-selector {
+  background: #3a3a3a;
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+:root.dark-mode .compare-selector:hover {
+  border-color: rgba(125, 180, 216, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+:root.dark-mode .compare-dropdown {
+  background: #333333;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+:root.dark-mode .compare-dropdown-item {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+:root.dark-mode .compare-dropdown-item:hover {
+  background: #3a3a3a;
+}
+
+:root.light-mode .compare-selector {
+  background: #f5f7fa !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #1a1a2e !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+:root.light-mode .compare-selector:hover {
+  border-color: rgba(30, 58, 95, 0.3) !important;
+}
+
+:root.light-mode .compare-dropdown {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+:root.light-mode .compare-dropdown-item {
+  border-bottom-color: rgba(0, 0, 0, 0.05) !important;
+  color: #2d3748 !important;
+}
+
+:root.light-mode .compare-dropdown-item:hover {
+  background: #f5f7fa !important;
+}
+
+/* ==============================
    Decorative Visual Assets
    ============================== */
 

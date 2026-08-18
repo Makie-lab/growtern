@@ -48,18 +48,18 @@ export default function RoleComparison() {
           <div key={i} className="relative">
             <button
               onClick={() => setDropdownOpen(dropdownOpen === i ? null : (i as 0 | 1))}
-              className="w-full flex items-center justify-between p-4 rounded-2xl border border-[var(--hairline-strong)] bg-[var(--glass-bg)] backdrop-blur-sm hover:shadow-md transition-all"
+              className="compare-selector w-full flex items-center justify-between p-4 rounded-2xl transition-all"
             >
               <span className="font-semibold text-sm">{selectedRoles[i].name}</span>
               <ChevronDown size={16} className="opacity-50" />
             </button>
             {dropdownOpen === i && (
-              <div className="absolute top-full left-0 right-0 mt-2 z-20 bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--hairline-strong)] rounded-2xl shadow-2xl max-h-[300px] overflow-y-auto animate-fade-in">
+              <div className="compare-dropdown absolute top-full left-0 right-0 mt-2 z-20 rounded-2xl max-h-[300px] overflow-y-auto animate-fade-in">
                 {roleComparisons.map((role) => (
                   <button
                     key={role.name}
                     onClick={() => handleSelect(i as 0 | 1, role)}
-                    className="w-full text-left px-4 py-3 text-sm hover:bg-[var(--tint)] transition-colors first:rounded-t-2xl last:rounded-b-2xl border-b border-[var(--hairline)] last:border-b-0"
+                    className="compare-dropdown-item w-full text-left px-4 py-3 text-sm transition-colors first:rounded-t-2xl last:rounded-b-2xl"
                   >
                     {role.name}
                   </button>
