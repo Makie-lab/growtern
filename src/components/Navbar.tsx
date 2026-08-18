@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   Home,
   Sparkles,
@@ -71,7 +71,6 @@ export default function Navbar() {
   const [theme, setTheme] = useState<ThemeMode>("system");
   const panelRef = useRef<HTMLLIElement>(null);
   const pathname = usePathname();
-  const router = useRouter();
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -116,7 +115,11 @@ export default function Navbar() {
   const handleClick = useCallback(
     (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault();
-      if (!isHome) { router.push(`/#${id}`); return; }
+      if (!isHome) {
+        // Use window.location to fully navigate back to home with hash
+        window.location.href = `/#${id}`;
+        return;
+      }
       const target = document.getElementById(id);
       if (target) {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -124,7 +127,7 @@ export default function Navbar() {
         history.replaceState(null, "", `/#${id}`);
       }
     },
-    [isHome, router]
+    [isHome]
   );
 
   const handleChangeType = (type: UserType) => {

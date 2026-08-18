@@ -1,6 +1,7 @@
 import { ArrowDown } from "lucide-react";
 import TernLogo from "./TernLogo";
 import TernFlock from "./TernFlock";
+import HeroGraphic from "./HeroGraphic";
 
 export default function HeroSection() {
   return (
@@ -14,7 +15,12 @@ export default function HeroSection() {
         <TernFlock color="#1e3a5f" />
       </div>
 
-      {/* Decorative square - top left */}
+      {/* Animated vector graphic - right side */}
+      <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[300px] sm:w-[400px] lg:w-[500px] pointer-events-none hidden md:block">
+        <HeroGraphic />
+      </div>
+
+      {/* Decorative squares */}
       <div className="absolute top-32 left-8 w-16 h-16 border border-[#1e3a5f]/[0.3] rotate-12 pointer-events-none hidden sm:block" />
       <div className="absolute bottom-40 right-12 w-10 h-10 border border-[#1e3a5f]/[0.25] -rotate-6 pointer-events-none hidden sm:block" />
 
