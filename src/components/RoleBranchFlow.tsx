@@ -61,7 +61,7 @@ export default function RoleBranchFlow() {
           eds.map((e) => ({
             ...e,
             animated: roleEdges.find((re) => re.id === e.id)?.animated || false,
-            style: { opacity: 1, stroke: undefined, strokeWidth: 1.5 },
+            style: { opacity: 1, stroke: undefined, strokeWidth: 2 },
           }))
         );
         return;
@@ -110,7 +110,7 @@ export default function RoleBranchFlow() {
       eds.map((e) => ({
         ...e,
         animated: roleEdges.find((re) => re.id === e.id)?.animated || false,
-        style: { opacity: 1, stroke: undefined, strokeWidth: 1.5 },
+        style: { opacity: 1, stroke: undefined, strokeWidth: 2 },
       }))
     );
   }, [setNodes, setEdges]);
@@ -132,7 +132,7 @@ export default function RoleBranchFlow() {
         proOptions={{ hideAttribution: true }}
         defaultEdgeOptions={{
           type: "smoothstep",
-          style: { strokeWidth: 1.5, stroke: "rgba(0,0,0,0.12)" },
+          style: { strokeWidth: 2, stroke: "rgba(100,100,120,0.3)" },
         }}
       >
         <Controls
