@@ -1192,72 +1192,72 @@ textarea:focus-visible,
 /* Force light mode via class - override ALL system dark mode styles */
 :root.light-mode {
   --background: #FFFFFF !important;
-  --foreground: #0a0a0a !important;
-  --muted: rgba(0, 0, 0, 0.6) !important;
-  --hairline: rgba(0, 0, 0, 0.08) !important;
-  --hairline-strong: rgba(0, 0, 0, 0.14) !important;
+  --foreground: #1a1a2e !important;
+  --muted: rgba(26, 26, 46, 0.55) !important;
+  --hairline: rgba(26, 26, 46, 0.08) !important;
+  --hairline-strong: rgba(26, 26, 46, 0.13) !important;
   --surface: rgba(255, 255, 255, 0.75) !important;
-  --tint: rgba(0, 0, 0, 0.04) !important;
-  --glass-bg: rgba(255, 255, 255, 0.75) !important;
+  --tint: rgba(26, 26, 46, 0.03) !important;
+  --glass-bg: rgba(255, 255, 255, 0.8) !important;
   --glass-bg-nav: rgba(255, 255, 255, 0.9) !important;
-  --glass-border: rgba(0, 0, 0, 0.1) !important;
-  --glass-shadow: rgba(0, 0, 0, 0.05) !important;
+  --glass-border: rgba(26, 26, 46, 0.08) !important;
+  --glass-shadow: rgba(26, 26, 46, 0.04) !important;
   --accent: #1e3a5f !important;
 }
 
 :root.light-mode body {
-  background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.04) 1px, transparent 0) !important;
+  background-image: radial-gradient(circle at 1px 1px, rgba(26, 26, 46, 0.035) 1px, transparent 0) !important;
 }
 
 :root.light-mode .nav-pill {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-color: rgba(0, 0, 0, 0.14) !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.12) !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(26, 26, 46, 0.1) !important;
+  box-shadow: 0 1px 2px rgba(26,26,46,0.03), 0 12px 40px rgba(26,26,46,0.08) !important;
 }
 
 :root.light-mode .glass-card {
-  background: rgba(255, 255, 255, 0.75) !important;
-  border-color: rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.05) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(26, 26, 46, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(26,26,46,0.04) !important;
 }
 
 :root.light-mode .glass-card-subtle {
-  background: rgba(255, 255, 255, 0.5) !important;
-  border-color: rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.05) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  border-color: rgba(26, 26, 46, 0.06) !important;
+  box-shadow: 0 4px 16px rgba(26,26,46,0.03) !important;
 }
 
 :root.light-mode .chip {
   background: #ffffff !important;
-  border-color: rgba(0, 0, 0, 0.14) !important;
-  color: #0a0a0a !important;
+  border-color: rgba(26, 26, 46, 0.12) !important;
+  color: #2d3748 !important;
 }
 
-:root.light-mode .chip:hover { background: rgba(0,0,0,0.04) !important; }
+:root.light-mode .chip:hover { background: rgba(26,26,46,0.03) !important; }
 
 :root.light-mode .chip--active {
-  background: #0a0a0a !important;
+  background: #1e3a5f !important;
   color: #ffffff !important;
-  border-color: #0a0a0a !important;
+  border-color: #1e3a5f !important;
 }
 
-:root.light-mode .btn-primary { background: #0a0a0a !important; color: #ffffff !important; }
-:root.light-mode .btn-secondary { border-color: rgba(0,0,0,0.14) !important; color: #0a0a0a !important; }
+:root.light-mode .btn-primary { background: #1e3a5f !important; color: #ffffff !important; }
+:root.light-mode .btn-secondary { border-color: rgba(26,26,46,0.14) !important; color: #2d3748 !important; }
 
-:root.light-mode .nav-icon-btn { color: #0a0a0a !important; }
-:root.light-mode .nav-icon-btn--active { background: #0a0a0a !important; color: #ffffff !important; }
-:root.light-mode .nav-icon-btn--active:hover { background: #0a0a0a !important; color: #ffffff !important; }
-:root.light-mode .nav-tooltip { background: #0a0a0a !important; color: #ffffff !important; }
+:root.light-mode .nav-icon-btn { color: #3d4a5c !important; }
+:root.light-mode .nav-icon-btn--active { background: #1e3a5f !important; color: #ffffff !important; }
+:root.light-mode .nav-icon-btn--active:hover { background: #1e3a5f !important; color: #ffffff !important; }
+:root.light-mode .nav-tooltip { background: #2d3748 !important; color: #ffffff !important; }
 
-:root.light-mode input { color: #0a0a0a !important; }
-:root.light-mode input::placeholder { color: rgba(0,0,0,0.4) !important; }
+:root.light-mode input { color: #2d3748 !important; }
+:root.light-mode input::placeholder { color: rgba(26,26,46,0.35) !important; }
 
 :root.light-mode .accent-text { color: #1e3a5f !important; }
-:root.light-mode .accent-bg { background: rgba(30, 58, 95, 0.1) !important; }
+:root.light-mode .accent-bg { background: rgba(30, 58, 95, 0.08) !important; }
 :root.light-mode .accent-icon { color: #1e3a5f !important; }
 
-:root.light-mode .react-flow { background: #ffffff !important; }
-:root.light-mode .react-flow__controls { background: rgba(255,255,255,0.9) !important; border-color: rgba(0,0,0,0.1) !important; }
-:root.light-mode .react-flow__controls button { background: rgba(255,255,255,0.9) !important; fill: #0a0a0a !important; }
+:root.light-mode .react-flow { background: #fafbfc !important; }
+:root.light-mode .react-flow__controls { background: rgba(255,255,255,0.9) !important; border-color: rgba(26,26,46,0.08) !important; }
+:root.light-mode .react-flow__controls button { background: rgba(255,255,255,0.9) !important; fill: #3d4a5c !important; }
 
-:root.light-mode .marquee-content .chip { background: #ffffff !important; color: #0a0a0a !important; }
+:root.light-mode .marquee-content .chip { background: #ffffff !important; color: #2d3748 !important; }
