@@ -209,7 +209,7 @@ export default function Navbar() {
           </button>
 
           {showPanel && (
-            <div className="absolute top-full right-0 mt-3 w-[280px] bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] rounded-2xl shadow-2xl p-4 animate-fade-in z-50">
+            <div className="absolute top-full right-0 mt-3 w-[calc(100vw-32px)] sm:w-[280px] bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] rounded-2xl shadow-2xl p-4 animate-fade-in z-50">
               {/* User info */}
               <div className="flex items-center gap-3 mb-4 pb-3 border-b border-[var(--hairline)]">
                 <div className="w-10 h-10 rounded-xl accent-bg flex items-center justify-center">

@@ -31,7 +31,7 @@ export default function HeroSection() {
         </div>
 
         {/* Brand name */}
-        <h1 className="text-8xl sm:text-9xl lg:text-[10rem] leading-none tracking-tighter mb-6 deco-corner">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none tracking-tighter mb-4 sm:mb-6 deco-corner">
           <span className="font-black">Grow</span>
           <span
             className="font-bold italic accent-text"
@@ -44,7 +44,7 @@ export default function HeroSection() {
         </h1>
 
         {/* Tagline */}
-        <p className="text-3xl sm:text-4xl opacity-70 mb-4 max-w-3xl para-bordered">
+        <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl opacity-70 mb-3 sm:mb-4 max-w-3xl para-bordered">
           Free resources to{" "}
           <span
             className="font-serif italic"
@@ -55,7 +55,7 @@ export default function HeroSection() {
           your career.
         </p>
 
-        <p className="text-xl sm:text-2xl opacity-50 mb-12 max-w-2xl">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl opacity-50 mb-8 sm:mb-12 max-w-2xl">
           Certifications, internships, hackathons, webinars, and more — curated
           for Asia-based students and professionals. Search by role, compare paths, find what you need.
         </p>

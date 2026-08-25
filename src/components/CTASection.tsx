@@ -7,7 +7,7 @@ export default function CTASection() {
       aria-label="Get started"
       className="section-scroll max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-28 deco-diamond deco-rings relative"
     >
-      <div className="glass-card p-12 sm:p-16 lg:p-20 text-center relative overflow-hidden">
+      <div className="glass-card p-8 sm:p-12 lg:p-16 xl:p-20 text-center relative overflow-hidden">
         {/* Decorative gradient blob */}
         <div
           className="absolute -top-20 -right-20 w-72 h-72 rounded-full opacity-20 blur-3xl pointer-events-none"
@@ -23,7 +23,7 @@ export default function CTASection() {
             <TernLogo size={56} color="#1e3a5f" />
           </div>
 
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-5">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-5">
             Start{" "}
             <span
               className="font-serif italic"
@@ -34,7 +34,7 @@ export default function CTASection() {
             today
           </h2>
 
-          <p className="text-lg opacity-60 max-w-xl mx-auto mb-10">
+          <p className="text-sm sm:text-base md:text-lg opacity-60 max-w-xl mx-auto mb-6 sm:mb-10">
             All resources are free. No signups, no hidden costs. Just pick a
             category or search by your target role and go.
           </p>

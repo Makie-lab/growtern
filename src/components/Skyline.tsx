@@ -14,7 +14,7 @@ export default function Skyline({ className = "", color = "#1e3a5f" }: SkylinePr
         viewBox="0 0 480 80"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-[320px] sm:w-[400px] lg:w-[480px] flex-shrink-0"
+        className="w-[200px] sm:w-[320px] md:w-[400px] lg:w-[480px] flex-shrink-0"
         aria-hidden="true"
         style={{ opacity: 0.35 }}
       >

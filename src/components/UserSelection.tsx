@@ -33,12 +33,12 @@ export default function UserSelection() {
   if (step === "done" || !visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4">
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
 
       {/* Modal */}
-      <div className="relative bg-[var(--background)] rounded-3xl shadow-2xl max-w-md w-full p-8 animate-fade-in">
+      <div className="relative bg-[var(--background)] rounded-t-3xl sm:rounded-3xl shadow-2xl w-full sm:max-w-md p-6 sm:p-8 animate-fade-in max-h-[90vh] overflow-y-auto">
         {step === "initial" && (
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-2">Welcome to GrowTern</h2>
