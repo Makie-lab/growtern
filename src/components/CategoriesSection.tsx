@@ -28,7 +28,7 @@ export default function CategoriesSection() {
       aria-label="Browse categories"
       className="section-scroll max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 deco-cross relative overflow-hidden"
     >
-      <div className="mb-10 text-center">
+      <div className="mb-8 text-center">
         <p className="eyebrow mb-2">Browse by category</p>
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4 inline-block section-accent pl-5">
           Choose what you{" "}
@@ -44,38 +44,27 @@ export default function CategoriesSection() {
         </p>
       </div>
 
-      {/* Category Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {/* Minimized Category Cards - icon + title inline */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {categories.map((cat) => {
           const Icon = iconMap[cat.icon] || Award;
           return (
             <Link
               key={cat.name}
               href={`/category/${cat.slug}`}
-              className="glass-card p-6 flex flex-col gap-4 glass-hover group"
+              className="glass-card px-4 py-3 flex items-center gap-3 glass-hover group"
             >
-              <div className="flex items-center justify-between">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center accent-bg"
-                >
-                  <Icon size={22} className="accent-icon" />
-                </div>
-                <ArrowRight
-                  size={16}
-                  className="opacity-0 group-hover:opacity-60 transition-opacity -translate-x-2 group-hover:translate-x-0 transition-transform"
-                />
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center accent-bg flex-shrink-0">
+                <Icon size={18} className="accent-icon" />
               </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-1">{cat.name}</h3>
-                <p className="text-sm opacity-55 leading-relaxed">
-                  {cat.description}
-                </p>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-semibold truncate">{cat.name}</h3>
+                <p className="text-[11px] opacity-40">{cat.count} resources</p>
               </div>
-              <div className="mt-auto pt-3 border-t border-[var(--hairline)]">
-                <span className="text-xs font-medium opacity-40">
-                  {cat.count} free resources →
-                </span>
-              </div>
+              <ArrowRight
+                size={14}
+                className="opacity-0 group-hover:opacity-50 -translate-x-1 group-hover:translate-x-0 transition-all flex-shrink-0"
+              />
             </Link>
           );
         })}
