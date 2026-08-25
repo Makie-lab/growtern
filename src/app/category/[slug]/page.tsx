@@ -69,7 +69,7 @@ export default async function CategoryPage({ params }: PageProps) {
               <span className="text-[11px] font-medium opacity-40">
                 {resource.provider}
               </span>
-              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-900">
+              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full accent-bg accent-text">
                 Free
               </span>
             </div>

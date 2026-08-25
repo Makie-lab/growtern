@@ -7,6 +7,7 @@ import {
   GraduationCap,
   Code,
   ArrowRight,
+  Video,
 } from "lucide-react";
 import { categories } from "@/data/features";
 
@@ -17,6 +18,7 @@ const iconMap: Record<string, typeof Award> = {
   BookOpen,
   GraduationCap,
   Code,
+  Video,
 };
 
 export default function CategoriesSection() {
