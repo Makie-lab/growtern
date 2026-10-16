@@ -1,17 +1,18 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse, type NextRequest } from "next/server";
 
-// Pages that require a personal account. API routes check auth themselves
-// so they can return JSON 401s instead of redirects.
-const isProtectedPage = createRouteMatcher(["/dashboard(.*)", "/assessment/take(.*)", "/assessment/result(.*)"]);
+// Must match SESSION_COOKIE in src/lib/account.ts (kept here so the proxy stays dependency-free).
+const SESSION_COOKIE = "growtern_session";
 
-export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedPage(req)) await auth.protect();
-}, { signInUrl: "/sign-in", signUpUrl: "/sign-up" });
+/** Pages that need a (placeholder) personal account. API routes check auth themselves. */
+export function proxy(req: NextRequest) {
+  if (!req.cookies.get(SESSION_COOKIE)?.value) {
+    const url = new URL("/sign-in", req.url);
+    url.searchParams.set("redirect_url", req.nextUrl.pathname + req.nextUrl.search);
+    return NextResponse.redirect(url);
+  }
+  return NextResponse.next();
+}
 
 export const config = {
-  matcher: [
-    // Skip Next.js internals and static files
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    "/(api|trpc)(.*)",
-  ],
+  matcher: ["/dashboard/:path*", "/assessment/take/:path*", "/assessment/result/:path*"],
 };

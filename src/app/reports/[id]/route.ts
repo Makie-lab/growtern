@@ -1,23 +1,19 @@
-import { getReportUrl } from "@/lib/db";
+import { getAttemptForReport } from "@/lib/db";
+import { renderReport } from "@/lib/report";
 
-/**
- * Vercel Blob serves .html files as downloads (Content-Disposition: attachment),
- * so shareable reports are streamed through this route to display in the browser.
- */
+/** Shareable, printable HTML report for an assessment attempt. */
 export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const blobUrl = await getReportUrl(id);
-  if (!blobUrl) return new Response("Report not found", { status: 404 });
+  const found = await getAttemptForReport(id);
+  if (!found) return new Response("Report not found", { status: 404 });
 
-  const res = await fetch(blobUrl, { cache: "no-store" });
-  if (!res.ok) return new Response("Report unavailable", { status: 502 });
+  const { attempt, profile } = found;
+  const html = renderReport(profile?.full_name ?? profile?.email ?? "GrowTern user", attempt.created_at, attempt.result);
 
-  return new Response(await res.text(), {
+  return new Response(html, {
     headers: {
       "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "public, max-age=300",
       "X-Robots-Tag": "noindex",
-      // Report HTML is generated server-side with escaped values; lock it down anyway.
       "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:",
     },
   });

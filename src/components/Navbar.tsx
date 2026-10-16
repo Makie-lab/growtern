@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useUser, SignInButton, SignUpButton, SignOutButton } from "@clerk/nextjs";
+import { useAccount, signOut } from "@/components/account/useAccount";
 import {
   Home,
   Sparkles,
@@ -85,7 +85,7 @@ export default function Navbar() {
   const panelRef = useRef<HTMLLIElement>(null);
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const { isSignedIn, user } = useUser();
+  const { isSignedIn, account } = useAccount();
 
   // Restore active state from URL hash on mount
   useEffect(() => {
@@ -121,18 +121,12 @@ export default function Navbar() {
 
   // Signed-in users: the account profile is the source of truth for the path.
   useEffect(() => {
-    if (!isSignedIn) return;
-    fetch("/api/profile")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        const type = data?.profile?.user_type as UserType | undefined;
-        if (!type) return;
-        setUserType(type);
-        const prefs = getUserPreferences();
-        if (prefs?.userType !== type) setUserPreferences({ userType: type, createdAt: new Date().toISOString() });
-      })
-      .catch(() => undefined);
-  }, [isSignedIn]);
+    const type = account?.userType;
+    if (!type) return;
+    setUserType(type);
+    const prefs = getUserPreferences();
+    if (prefs?.userType !== type) setUserPreferences({ userType: type, createdAt: new Date().toISOString() });
+  }, [account?.userType]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -270,7 +264,7 @@ export default function Navbar() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-semibold truncate">
-                    {isSignedIn ? user?.fullName || user?.primaryEmailAddress?.emailAddress : userTypeLabels[userType].label}
+                    {isSignedIn ? account?.name || account?.email : userTypeLabels[userType].label}
                   </p>
                   <p className="text-[10px] opacity-40 truncate">
                     {isSignedIn ? `Personal account · ${userTypeLabels[userType].label}` : "Guest · not signed in"}
@@ -290,16 +284,12 @@ export default function Navbar() {
                   </Link>
                 ) : (
                   <>
-                    <SignUpButton mode="modal">
-                      <button className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm accent-bg font-semibold">
-                        <UserPlus size={16} className="accent-icon" /> Create personal account
-                      </button>
-                    </SignUpButton>
-                    <SignInButton mode="modal">
-                      <button className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm hover:bg-[var(--tint)]">
-                        <LogIn size={16} className="opacity-50" /> Sign in
-                      </button>
-                    </SignInButton>
+                    <Link href="/sign-up" className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm accent-bg font-semibold">
+                      <UserPlus size={16} className="accent-icon" /> Create personal account
+                    </Link>
+                    <Link href="/sign-in" className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm hover:bg-[var(--tint)]">
+                      <LogIn size={16} className="opacity-50" /> Sign in
+                    </Link>
                   </>
                 )}
               </div>
@@ -355,15 +345,16 @@ export default function Navbar() {
 
               {/* Reset / sign out */}
               {isSignedIn ? (
-                <SignOutButton redirectUrl="/">
-                  <button
-                    onClick={() => clearUserPreferences()}
-                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-left text-sm opacity-50 hover:opacity-100 hover:bg-red-500/10 hover:text-red-500 transition-all"
-                  >
-                    <LogOut size={16} />
-                    <span>Sign out</span>
-                  </button>
-                </SignOutButton>
+                <button
+                  onClick={() => {
+                    clearUserPreferences();
+                    signOut();
+                  }}
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-left text-sm opacity-50 hover:opacity-100 hover:bg-red-500/10 hover:text-red-500 transition-all"
+                >
+                  <LogOut size={16} />
+                  <span>Sign out</span>
+                </button>
               ) : (
                 <button
                   onClick={handleReset}

@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, CheckCircle2, LayoutDashboard, RotateCcw, XCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle2, FileText, LayoutDashboard, RotateCcw, XCircle } from "lucide-react";
 import CareerPathCard from "@/components/assessment/CareerPathCard";
 import CareerPathFlow from "@/components/assessment/CareerPathFlow";
 import PathwayBreakdown from "@/components/assessment/PathwayBreakdown";
-import ReportButton from "@/components/assessment/ReportButton";
 import ExpertCard from "@/components/experts/ExpertCard";
 import { requireAccount } from "@/lib/account";
 import { getAttempt } from "@/lib/db";
@@ -67,7 +66,9 @@ export default async function ResultPage({ params }: { params: Promise<{ id: str
       </section>
 
       <div className="flex flex-wrap gap-3">
-        <ReportButton attemptId={attempt.id} initialUrl={attempt.report_url ? `/reports/${attempt.id}` : null} />
+        <a href={`/reports/${attempt.id}`} target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm px-4 py-2 inline-flex items-center gap-2">
+          <FileText size={16} /> Open printable report
+        </a>
         <Link href="/assessment" className="btn-secondary text-sm px-4 py-2 inline-flex items-center gap-2">
           <RotateCcw size={16} /> Take another assessment
         </Link>

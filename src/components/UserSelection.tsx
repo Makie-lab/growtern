@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { User, UserCheck, GraduationCap, Briefcase, BookOpen, ArrowRight } from "lucide-react";
-import { useAuth } from "@clerk/nextjs";
+import { useAccount } from "@/components/account/useAccount";
 import { getUserPreferences, setUserPreferences, type UserType } from "@/data/userTypes";
 
 export default function UserSelection() {
   const [step, setStep] = useState<"initial" | "select-type" | "done">("initial");
   const [visible, setVisible] = useState(false);
-  const { isLoaded, isSignedIn } = useAuth();
+  const { isLoaded, isSignedIn } = useAccount();
 
   useEffect(() => {
     if (!isLoaded) return;

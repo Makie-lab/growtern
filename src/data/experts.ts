@@ -12,7 +12,7 @@ export interface Expert {
   bio: string;
   languages: string[];
   sessionModes: ("Online" | "In-person")[];
-  /** Consultation requests are emailed here via Resend. */
+  /** Consultation requests are "emailed" here (placeholder outbox for now). */
   email: string;
   /**
    * false = sample profile. Replace with real, consenting experts (and their

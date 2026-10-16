@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useAuth, SignInButton } from "@clerk/nextjs";
+import Link from "next/link";
+import { useAccount } from "@/components/account/useAccount";
 import { Award, Briefcase, CheckCircle2, Languages, Loader2, Mail, MapPin, Video } from "lucide-react";
 import type { Expert } from "@/data/experts";
 
 export default function ExpertCard({ expert, attemptId, color }: { expert: Expert; attemptId?: string; color: string }) {
-  const { isSignedIn } = useAuth();
+  const { isSignedIn } = useAccount();
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [mode, setMode] = useState<string>(expert.sessionModes[0]);
@@ -80,9 +81,9 @@ export default function ExpertCard({ expert, attemptId, color }: { expert: Exper
             <CheckCircle2 size={14} /> Request sent — {expert.name.split(" ")[0]} will reply by email.
           </p>
         ) : !isSignedIn ? (
-          <SignInButton mode="modal">
-            <button type="button" className="btn-secondary w-full text-sm py-2">Sign in to request a session</button>
-          </SignInButton>
+          <Link href="/sign-in?redirect_url=%2Fexperts" className="btn-secondary w-full text-sm py-2 inline-flex justify-center">
+            Sign in to request a session
+          </Link>
         ) : !open ? (
           <button type="button" onClick={() => setOpen(true)} className="btn-primary w-full text-sm py-2 inline-flex items-center justify-center gap-2">
             <Mail size={15} /> Request a consultation

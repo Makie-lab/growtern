@@ -2,17 +2,32 @@
 
 Career growth platform for students, graduates and employees in the Philippines: free resources, a **200-item AHP-weighted competency assessment**, career path identification, and Philippines-based experts.
 
-**Stack:** Next.js (App Router) on Vercel · Tailwind CSS · Clerk (personal accounts) · PostgreSQL (Neon) · Resend · Vercel Blob · React Flow · lucide-react
+**Stack:** Next.js (App Router) · Tailwind CSS · React Flow · lucide-react
+
+It runs **entirely on your computer with no API keys**. Accounts, the database, email and report storage are simple placeholders (see [Placeholders](#placeholders)).
+
+## Run it locally
+
+Requires Node.js 20 or newer.
+
+```bash
+git clone https://github.com/Makie-lab/growtern.git
+cd growtern
+npm install
+npm run dev
+```
+
+Open http://localhost:3000, click the account icon, choose **Create personal account**, then go to **Assessment**.
 
 ## Features
 
 | Feature | Where |
 | --- | --- |
-| Personal accounts (sign up / sign in, profile, history) | `/sign-up`, `/sign-in`, `/dashboard` |
+| Personal accounts (placeholder sign-in, profile, history) | `/sign-up`, `/sign-in`, `/dashboard` |
 | 200-item assessment: 4 pathways × 50 items, pick any pathway(s) | `/assessment` |
 | AHP-weighted competency scoring + identified career path | `/assessment/result/[id]` |
-| 2 Philippines-based experts per pathway, consultation requests by email | `/experts`, result page |
-| Shareable HTML report stored in Vercel Blob | result page → "Save shareable report" |
+| 2 Philippines-based experts per pathway, consultation requests | `/experts`, result page |
+| Printable HTML report | `/reports/[id]` (result page → "Open printable report") |
 
 ### Pathways and competencies
 
@@ -35,20 +50,31 @@ Each pathway has 5 competencies × 10 items (difficulty 1–3).
 
 You can tune the judgements in `src/data/assessment/pathways.ts`. Every matrix currently has CR ≤ 0.017.
 
+## Placeholders
+
+| Feature | Placeholder used now | Replace later with |
+| --- | --- | --- |
+| Accounts | Name + email sign-in, no password, cookie session (`src/lib/account.ts`, `src/app/api/auth/session/`) | Clerk |
+| Database | JSON file at `.data/growtern.json` (`src/lib/db.ts`) | PostgreSQL (`db/schema.sql` has the matching tables) |
+| Email | Printed in the terminal and saved to `outbox` in the data file (`src/lib/email.ts`) | Resend |
+| Report storage | Built on request at `/reports/[id]` (`src/lib/report.ts`) | Vercel Blob |
+
+Delete the `.data/` folder to reset all local data. These placeholders are for local use only: there are no passwords, and hosted (serverless) platforms can't write the data file.
+
+> **Expert profiles are samples.** The 8 entries in `src/data/experts.ts` use placeholder names and `example.com` emails, and they show a "Sample profile" badge. Replace them with real experts in the Philippines who have agreed to be listed, and set `verified: true`.
+
 ## Directory structure
 
 ```
 growtern/
-├── db/schema.sql                    # PostgreSQL schema (profiles, attempts, expert requests)
-├── scripts/migrate.mjs              # npm run db:migrate
-├── .env.example
+├── db/schema.sql                    # PostgreSQL tables for when you add a real database
 └── src/
-    ├── proxy.ts                     # Clerk middleware (Next 16 "proxy"), protects account pages
+    ├── proxy.ts                     # Redirects signed-out users away from account pages
     ├── app/
-    │   ├── layout.tsx               # <ClerkProvider>
+    │   ├── layout.tsx
     │   ├── page.tsx                 # Landing page
-    │   ├── sign-in/[[...sign-in]]/  # Clerk sign-in
-    │   ├── sign-up/[[...sign-up]]/  # Clerk sign-up (personal account)
+    │   ├── sign-in/, sign-up/       # Placeholder sign-in / personal account creation
+    │   ├── reports/[id]/            # Printable competency report
     │   ├── (platform)/              # Shared Navbar + Footer shell
     │   │   ├── category/[slug]/     # Free resources by category
     │   │   ├── assessment/          # Pathway picker
@@ -57,17 +83,17 @@ growtern/
     │   │   ├── experts/             # 2 Philippines-based experts per pathway
     │   │   └── dashboard/           # Personal profile, history, combined career path
     │   └── api/
+    │       ├── auth/session/        # Placeholder sign-in / sign-out
     │       ├── assessments/         # POST submit & score · GET history
-    │       │   └── [id]/report/     # POST → Vercel Blob report
-    │       ├── experts/requests/    # POST consultation request → Resend
+    │       ├── experts/requests/    # POST consultation request
     │       └── profile/             # GET / PUT personal profile
     ├── lib/
     │   ├── ahp.ts                   # AHP: eigenvector weights, λmax, CI, CR
     │   ├── scoring.ts               # Competency, pathway, career fit, career path
-    │   ├── account.ts               # Clerk user → profile row
-    │   ├── db.ts                    # Neon queries
-    │   ├── email.ts                 # Resend templates
-    │   └── report.ts                # Vercel Blob report
+    │   ├── account.ts               # Placeholder auth
+    │   ├── db.ts                    # Placeholder database (JSON file)
+    │   ├── email.ts                 # Placeholder email (terminal + outbox)
+    │   └── report.ts                # Report HTML
     ├── data/
     │   ├── assessment/
     │   │   ├── pathways.ts          # Pathways, competencies, AHP matrices, careers
@@ -75,23 +101,10 @@ growtern/
     │   │   ├── index.ts             # 200-item bank (server only)
     │   │   └── questions/           # 50 items per pathway
     │   ├── experts.ts               # Expert profiles
-    │   ├── features.ts, roleComparison.ts, roleFlow.ts, userTypes.ts
+    │   └── features.ts, roleComparison.ts, roleFlow.ts, userTypes.ts
     └── components/
         ├── assessment/              # PathwayPicker, AssessmentRunner, CareerPathFlow, …
         ├── experts/ExpertCard.tsx
-        ├── account/                 # AuthShell, ProfileForm
+        ├── account/                 # AuthShell, LocalSignInForm, ProfileForm, useAccount
         └── …                        # Landing page sections
 ```
-
-## Setup
-
-```bash
-npm install
-cp .env.example .env.local     # fill in Clerk, DATABASE_URL, Resend, Blob
-npm run db:migrate             # create tables
-npm run dev
-```
-
-On Vercel, add **Neon** (Postgres) and **Blob** from the Storage tab, then add the Clerk and Resend keys. In the Clerk dashboard, leave **Organizations disabled** so every account is a personal account.
-
-> **Expert profiles are samples.** The 8 entries in `src/data/experts.ts` use placeholder names and `example.com` emails, and they show a "Sample profile" badge. Before launch, replace them with real experts in the Philippines who have agreed to be listed, and set `verified: true`.
