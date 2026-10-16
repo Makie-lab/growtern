@@ -25,7 +25,7 @@ export default async function CategoryPage({ params }: PageProps) {
     <main className="min-h-screen px-4 sm:px-6 lg:px-8 py-16 max-w-6xl mx-auto">
       {/* Back link */}
       <Link
-        href="/#categories"
+        href="/explore#categories"
         className="inline-flex items-center gap-2 text-sm opacity-50 hover:opacity-100 transition-opacity mb-8"
       >
         <ArrowLeft size={16} />

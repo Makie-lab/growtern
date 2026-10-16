@@ -45,6 +45,7 @@ const navItems: NavItem[] = [
   { id: "compare", label: "Compare", Icon: null, customIcon: true },
   { id: "roles", label: "Roles", Icon: Network },
   { id: "search", label: "Search", Icon: Search },
+  { id: "app", label: "GrowTern app", Icon: LayoutDashboard, href: "/" },
   { id: "assessment", label: "Assessment", Icon: ClipboardCheck, href: "/assessment" },
   { id: "experts", label: "Experts", Icon: Users, href: "/experts" },
 ];
@@ -84,7 +85,7 @@ export default function Navbar() {
   const [theme, setTheme] = useState<ThemeMode>("system");
   const panelRef = useRef<HTMLLIElement>(null);
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome = pathname === "/explore";
   const { isSignedIn, account } = useAccount();
 
   // Restore active state from URL hash on mount
@@ -162,14 +163,14 @@ export default function Navbar() {
       e.preventDefault();
       if (!isHome) {
         // Use window.location to fully navigate back to home with hash
-        window.location.href = `/#${id}`;
+        window.location.href = `/explore#${id}`;
         return;
       }
       const target = document.getElementById(id);
       if (target) {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
         setActiveId(id);
-        history.replaceState(null, "", `/#${id}`);
+        history.replaceState(null, "", `/explore#${id}`);
       }
     },
     [isHome]
@@ -208,7 +209,7 @@ export default function Navbar() {
       <ul className="nav-pill flex items-center gap-1 px-3 py-2">
         {navItems.map(({ id, label, Icon, customIcon, href }) => {
           if (href) {
-            const routeActive = pathname.startsWith(href);
+            const routeActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
             return (
               <li key={id}>
                 <Link
@@ -228,7 +229,7 @@ export default function Navbar() {
           return (
             <li key={id}>
               <a
-                href={`/#${id}`}
+                href={`/explore#${id}`}
                 aria-label={label}
                 aria-current={active ? "page" : undefined}
                 title={label}

@@ -17,17 +17,23 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000, click the account icon, choose **Create personal account**, then go to **Assessment**.
+Open http://localhost:3000, click **Create personal account** in the sidebar, then go to **Assessment**.
 
 ## Features
 
+The app opens on a feature hub with a sidebar (desktop) or bottom tabs (mobile).
+
 | Feature | Where |
 | --- | --- |
-| Personal accounts (placeholder sign-in, profile, history) | `/sign-up`, `/sign-in`, `/dashboard` |
-| 200-item assessment: 4 pathways × 50 items, pick any pathway(s) | `/assessment` |
-| AHP-weighted competency scoring + identified career path | `/assessment/result/[id]` |
-| 2 Philippines-based experts per pathway, consultation requests | `/experts`, result page |
-| Printable HTML report | `/reports/[id]` (result page → "Open printable report") |
+| Feature hub: what the system does, pathway tests, experts, your career path | `/` |
+| 200-item assessment: 4 pathways × 50 items. Test setup → test form (all questions of a part on one page) → submit check | `/assessment`, `/assessment/take` |
+| Test results: % correct, correct / incorrect / skipped, retake, question feedback | `/assessment/result/[id]` |
+| AHP-weighted competency: matrices, weights, consistency check | `/career-path#ahp`, result page |
+| Career path identification and ranking of all 12 careers | `/career-path` |
+| 2 Philippines-based experts per pathway, consultation requests | `/experts` |
+| Personal account: profile, test history, expert requests | `/sign-up`, `/sign-in`, `/dashboard` |
+| Printable HTML report | `/reports/[id]` |
+| Free resources (the original landing page) | `/explore` |
 
 ### Pathways and competencies
 
@@ -72,16 +78,19 @@ growtern/
     ├── proxy.ts                     # Redirects signed-out users away from account pages
     ├── app/
     │   ├── layout.tsx
-    │   ├── page.tsx                 # Landing page
     │   ├── sign-in/, sign-up/       # Placeholder sign-in / personal account creation
     │   ├── reports/[id]/            # Printable competency report
-    │   ├── (platform)/              # Shared Navbar + Footer shell
-    │   │   ├── category/[slug]/     # Free resources by category
-    │   │   ├── assessment/          # Pathway picker
-    │   │   │   ├── take/            # Assessment runner (answer keys stay server-side)
-    │   │   │   └── result/[id]/     # AHP breakdown, career path, React Flow hierarchy, experts
+    │   ├── (app)/                   # Feature app: sidebar / bottom-tab shell
+    │   │   ├── page.tsx             # Feature hub (home)
+    │   │   ├── assessment/          # Test setup + previous test sessions
+    │   │   │   ├── take/            # Test form (answer keys stay server-side)
+    │   │   │   └── result/[id]/     # Results, AHP breakdown, career path, experts, feedback
+    │   │   ├── career-path/         # Identified career path + AHP matrices explained
     │   │   ├── experts/             # 2 Philippines-based experts per pathway
-    │   │   └── dashboard/           # Personal profile, history, combined career path
+    │   │   └── dashboard/           # Personal profile, test history, expert requests
+    │   ├── (platform)/              # Original landing-page shell (Navbar + Footer)
+    │   │   ├── explore/             # Free resources landing page
+    │   │   └── category/[slug]/     # Free resources by category
     │   └── api/
     │       ├── auth/session/        # Placeholder sign-in / sign-out
     │       ├── assessments/         # POST submit & score · GET history
@@ -90,6 +99,7 @@ growtern/
     ├── lib/
     │   ├── ahp.ts                   # AHP: eigenvector weights, λmax, CI, CR
     │   ├── scoring.ts               # Competency, pathway, career fit, career path
+    │   ├── careerProfile.ts         # Latest result per pathway → combined career path
     │   ├── account.ts               # Placeholder auth
     │   ├── db.ts                    # Placeholder database (JSON file)
     │   ├── email.ts                 # Placeholder email (terminal + outbox)
@@ -103,7 +113,8 @@ growtern/
     │   ├── experts.ts               # Expert profiles
     │   └── features.ts, roleComparison.ts, roleFlow.ts, userTypes.ts
     └── components/
-        ├── assessment/              # PathwayPicker, AssessmentRunner, CareerPathFlow, …
+        ├── app/AppShell.tsx         # Sidebar, mobile tabs, theme, account
+        ├── assessment/              # PathwayPicker, AssessmentRunner, AnswerReview, AhpMatrix, …
         ├── experts/ExpertCard.tsx
         ├── account/                 # AuthShell, LocalSignInForm, ProfileForm, useAccount
         └── …                        # Landing page sections
