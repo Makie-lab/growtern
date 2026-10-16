@@ -32,7 +32,7 @@ export default function UserSelection() {
     setStep("done");
     setVisible(false);
     // Continue to create a personal account; the chosen path is saved to it on the dashboard.
-    window.location.href = "/sign-up?redirect_url=%2Fdashboard";
+    window.location.href = "/sign-up?redirect_url=%2F";
   };
 
   if (step === "done" || !visible) return null;

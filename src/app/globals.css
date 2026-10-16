@@ -1387,3 +1387,91 @@ textarea:focus-visible,
 :root.light-mode .react-flow__controls button { background: rgba(255,255,255,0.9) !important; fill: #3d4a5c !important; }
 
 :root.light-mode .marquee-content .chip { background: #ffffff !important; color: #2d3748 !important; }
+
+/* ==============================
+   Feature app shell
+   ============================== */
+.app-sidebar,
+.app-topbar,
+.app-bottombar {
+  background: var(--glass-bg-nav);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.app-sidebar { border-right: 1px solid var(--hairline); }
+.app-topbar { border-bottom: 1px solid var(--hairline); }
+.app-bottombar {
+  border-top: 1px solid var(--hairline);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.app-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.65;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.app-nav-link:hover {
+  opacity: 1;
+  background: var(--tint);
+}
+
+.app-nav-link--active,
+.app-nav-link--active:hover {
+  opacity: 1;
+  background: var(--foreground);
+  color: var(--background);
+  font-weight: 600;
+}
+
+/* Test form option rows */
+.test-option {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--hairline-strong);
+  text-align: left;
+  font-size: 14px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.test-option:hover { background: var(--tint); }
+
+.test-option--picked {
+  border-color: var(--accent);
+  background: var(--tint);
+  font-weight: 500;
+}
+
+.test-option-letter {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  border: 1px solid var(--hairline-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.test-option--picked .test-option-letter {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--background);
+}
+
+/* The decorative landing-page lines don't belong in the app layout */
+body:has(.app-sidebar)::before,
+body:has(.app-sidebar)::after { display: none; }

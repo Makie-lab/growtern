@@ -31,9 +31,13 @@ export interface AttemptSummary {
   overall_score: number;
   career_title: string;
   created_at: string;
+  /** Test-session stats (like a practice-test history row). */
+  total: number;
+  correct: number;
+  skipped: number;
 }
 
-export interface Attempt extends AttemptSummary {
+export interface Attempt extends Omit<AttemptSummary, "total" | "correct" | "skipped"> {
   user_id: string;
   answers: Record<string, number>;
   result: AssessmentResult;
@@ -195,7 +199,19 @@ export async function listAttempts(userId: string): Promise<AttemptSummary[]> {
     .filter((a) => a.user_id === userId)
     .sort(newestFirst)
     .slice(0, 50)
-    .map(({ id, pathways, overall_score, career_title, created_at }) => ({ id, pathways, overall_score, career_title, created_at }));
+    .map(({ id, pathways, overall_score, career_title, created_at, answers, result }) => {
+      const total = result.pathways.reduce((n, p) => n + p.total, 0);
+      return {
+        id,
+        pathways,
+        overall_score,
+        career_title,
+        created_at,
+        total,
+        correct: result.pathways.reduce((n, p) => n + p.correct, 0),
+        skipped: total - Object.keys(answers).length,
+      };
+    });
 }
 
 /** Results newest first, used to build the combined career profile. */

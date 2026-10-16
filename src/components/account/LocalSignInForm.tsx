@@ -13,8 +13,8 @@ export default function LocalSignInForm({ mode }: { mode: "sign-in" | "sign-up" 
   const [error, setError] = useState<string | null>(null);
 
   // Only allow redirects back into this site.
-  const raw = params.get("redirect_url") ?? "/dashboard";
-  const redirectTo = raw.startsWith("/") && !raw.startsWith("//") ? raw : "/dashboard";
+  const raw = params.get("redirect_url") ?? "/";
+  const redirectTo = raw.startsWith("/") && !raw.startsWith("//") ? raw : "/";
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();

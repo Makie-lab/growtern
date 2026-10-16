@@ -12,12 +12,12 @@ export const metadata: Metadata = {
 
 export default function ExpertsPage() {
   return (
-    <main className="min-h-screen px-4 sm:px-6 lg:px-8 pt-28 pb-16 max-w-6xl mx-auto">
+    <div>
       <PageHeader
         eyebrow="Expert guidance"
         title="Experts in the"
         accent="Philippines"
-        description="Two practitioners per pathway. Send a consultation request from your account and they'll reply by email."
+        description="Two practitioners per pathway, based across the Philippines. Send a consultation request from your personal account."
       />
       <div className="space-y-12">
         {pathways.map((p) => (
@@ -36,6 +36,6 @@ export default function ExpertsPage() {
           </section>
         ))}
       </div>
-    </main>
+    </div>
   );
 }

@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import Skyline from "@/components/Skyline";
 import OfferingsSection from "@/components/OfferingsSection";
@@ -7,18 +6,18 @@ import RoleComparison from "@/components/RoleComparison";
 import RoleBranch from "@/components/RoleBranch";
 import RoleSearch from "@/components/RoleSearch";
 import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
 import UserSelection from "@/components/UserSelection";
+
+export const metadata = { title: "Free resources — GrowTern" };
 
 function DecoHr() {
   return <hr className="deco-hr max-w-6xl mx-auto" />;
 }
 
-export default function Home() {
+export default function ExplorePage() {
   return (
     <>
       <UserSelection />
-      <Navbar />
       <HeroSection />
 
       {/* Skyline visual after intro */}
@@ -36,7 +35,6 @@ export default function Home() {
       <DecoHr />
       <RoleSearch />
       <CTASection />
-      <Footer />
     </>
   );
 }

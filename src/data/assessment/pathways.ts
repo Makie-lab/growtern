@@ -1,4 +1,4 @@
-import { computeAhp, fromUpperTriangle, type AhpResult } from "@/lib/ahp";
+import { computeAhp, fromUpperTriangle, type AhpResult, type PairwiseMatrix } from "@/lib/ahp";
 
 /**
  * AHP hierarchy used by the assessment.
@@ -55,12 +55,16 @@ export interface WeightedCompetency extends Competency {
 
 export interface Career extends Omit<CareerDefinition, "judgements"> {
   pathway: PathwayId;
+  /** Full reciprocal pairwise comparison matrix. */
+  matrix: PairwiseMatrix;
   weights: number[];
   ahp: AhpResult;
 }
 
 export interface Pathway extends Omit<PathwayDefinition, "judgements" | "careers" | "competencies"> {
   competencies: WeightedCompetency[];
+  /** Full reciprocal pairwise comparison matrix. */
+  matrix: PairwiseMatrix;
   ahp: AhpResult;
   careers: Career[];
 }
@@ -233,10 +237,12 @@ const definitions: PathwayDefinition[] = [
 ];
 
 function build(def: PathwayDefinition): Pathway {
-  const ahp = computeAhp(fromUpperTriangle(def.judgements));
+  const matrix = fromUpperTriangle(def.judgements);
+  const ahp = computeAhp(matrix);
   const careers: Career[] = def.careers.map(({ judgements, ...career }) => {
-    const careerAhp = computeAhp(fromUpperTriangle(judgements));
-    return { ...career, pathway: def.id, weights: careerAhp.weights, ahp: careerAhp };
+    const careerMatrix = fromUpperTriangle(judgements);
+    const careerAhp = computeAhp(careerMatrix);
+    return { ...career, pathway: def.id, matrix: careerMatrix, weights: careerAhp.weights, ahp: careerAhp };
   });
   const { judgements: _j, careers: _c, competencies, ...rest } = def;
   void _j;
@@ -244,6 +250,7 @@ function build(def: PathwayDefinition): Pathway {
   return {
     ...rest,
     competencies: competencies.map((c, i) => ({ ...c, weight: ahp.weights[i] })),
+    matrix,
     ahp,
     careers,
   };

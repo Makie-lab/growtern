@@ -2,12 +2,15 @@ import TernLogo from "./TernLogo";
 import TernFlock from "./TernFlock";
 
 const footerLinks = [
-  { label: "Home", href: "/#home" },
-  { label: "Offerings", href: "/#offerings" },
-  { label: "Categories", href: "/#categories" },
-  { label: "Compare", href: "/#compare" },
-  { label: "Roles", href: "/#roles" },
-  { label: "Search", href: "/#search" },
+  { label: "App", href: "/" },
+  { label: "Assessment", href: "/assessment" },
+  { label: "Experts", href: "/experts" },
+  { label: "Resources", href: "/explore#home" },
+  { label: "Offerings", href: "/explore#offerings" },
+  { label: "Categories", href: "/explore#categories" },
+  { label: "Compare", href: "/explore#compare" },
+  { label: "Roles", href: "/explore#roles" },
+  { label: "Search", href: "/explore#search" },
 ];
 
 export default function Footer() {
