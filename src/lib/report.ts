@@ -2,8 +2,12 @@ import { put } from "@vercel/blob";
 import { escapeHtml } from "@/lib/email";
 import type { AssessmentResult } from "@/lib/scoring";
 
+/**
+ * Stores connected to a Vercel project authenticate with OIDC (BLOB_STORE_ID +
+ * VERCEL_OIDC_TOKEN). Older stores and local dev can use BLOB_READ_WRITE_TOKEN.
+ */
 export function isBlobConfigured(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
 }
 
 function renderReport(name: string, createdAt: string, result: AssessmentResult): string {

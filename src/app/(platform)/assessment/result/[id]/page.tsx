@@ -67,7 +67,7 @@ export default async function ResultPage({ params }: { params: Promise<{ id: str
       </section>
 
       <div className="flex flex-wrap gap-3">
-        <ReportButton attemptId={attempt.id} initialUrl={attempt.report_url} />
+        <ReportButton attemptId={attempt.id} initialUrl={attempt.report_url ? `/reports/${attempt.id}` : null} />
         <Link href="/assessment" className="btn-secondary text-sm px-4 py-2 inline-flex items-center gap-2">
           <RotateCcw size={16} /> Take another assessment
         </Link>
