@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useUser, SignInButton, SignUpButton, SignOutButton } from "@clerk/nextjs";
 import {
   Home,
   Sparkles,
@@ -16,6 +18,11 @@ import {
   Sun,
   Moon,
   Monitor,
+  ClipboardCheck,
+  Users,
+  LayoutDashboard,
+  LogIn,
+  UserPlus,
 } from "lucide-react";
 import CompareIcon from "./CompareIcon";
 import { getUserPreferences, setUserPreferences, clearUserPreferences, type UserType } from "@/data/userTypes";
@@ -27,6 +34,8 @@ type NavItem = {
   label: string;
   Icon: typeof Home | null;
   customIcon?: boolean;
+  /** Route links (vs. home-page section anchors). */
+  href?: string;
 };
 
 const navItems: NavItem[] = [
@@ -36,7 +45,11 @@ const navItems: NavItem[] = [
   { id: "compare", label: "Compare", Icon: null, customIcon: true },
   { id: "roles", label: "Roles", Icon: Network },
   { id: "search", label: "Search", Icon: Search },
+  { id: "assessment", label: "Assessment", Icon: ClipboardCheck, href: "/assessment" },
+  { id: "experts", label: "Experts", Icon: Users, href: "/experts" },
 ];
+
+const sectionItems = navItems.filter((n) => !n.href);
 
 const userTypeLabels: Record<UserType, { label: string; icon: typeof User }> = {
   guest: { label: "Guest", icon: User },
@@ -72,11 +85,12 @@ export default function Navbar() {
   const panelRef = useRef<HTMLLIElement>(null);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const { isSignedIn, user } = useUser();
 
   // Restore active state from URL hash on mount
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
-    if (hash && navItems.some((n) => n.id === hash)) {
+    if (hash && sectionItems.some((n) => n.id === hash)) {
       setActiveId(hash);
     }
   }, []);
@@ -85,7 +99,7 @@ export default function Navbar() {
   useEffect(() => {
     function handlePopState() {
       const hash = window.location.hash.replace("#", "");
-      if (hash && navItems.some((n) => n.id === hash)) {
+      if (hash && sectionItems.some((n) => n.id === hash)) {
         setActiveId(hash);
       } else {
         setActiveId("home");
@@ -105,6 +119,21 @@ export default function Navbar() {
     }
   }, []);
 
+  // Signed-in users: the account profile is the source of truth for the path.
+  useEffect(() => {
+    if (!isSignedIn) return;
+    fetch("/api/profile")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        const type = data?.profile?.user_type as UserType | undefined;
+        if (!type) return;
+        setUserType(type);
+        const prefs = getUserPreferences();
+        if (prefs?.userType !== type) setUserPreferences({ userType: type, createdAt: new Date().toISOString() });
+      })
+      .catch(() => undefined);
+  }, [isSignedIn]);
+
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
@@ -117,7 +146,7 @@ export default function Navbar() {
 
   useEffect(() => {
     if (!isHome) return;
-    const targets = navItems
+    const targets = sectionItems
       .map((n) => document.getElementById(n.id))
       .filter((el): el is HTMLElement => el !== null);
     if (targets.length === 0) return;
@@ -152,9 +181,16 @@ export default function Navbar() {
     [isHome]
   );
 
-  const handleChangeType = (type: UserType) => {
+  const handleChangeType = async (type: UserType) => {
     setUserType(type);
     setUserPreferences({ userType: type, createdAt: new Date().toISOString() });
+    if (isSignedIn && type !== "guest") {
+      await fetch("/api/profile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userType: type }),
+      }).catch(() => undefined);
+    }
     setShowPanel(false);
     window.location.reload();
   };
@@ -176,7 +212,24 @@ export default function Navbar() {
   return (
     <nav aria-label="Primary" className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
       <ul className="nav-pill flex items-center gap-1 px-3 py-2">
-        {navItems.map(({ id, label, Icon, customIcon }) => {
+        {navItems.map(({ id, label, Icon, customIcon, href }) => {
+          if (href) {
+            const routeActive = pathname.startsWith(href);
+            return (
+              <li key={id}>
+                <Link
+                  href={href}
+                  aria-label={label}
+                  aria-current={routeActive ? "page" : undefined}
+                  title={label}
+                  className={`nav-icon-btn group relative ${routeActive ? "nav-icon-btn--active" : ""}`}
+                >
+                  {Icon && <Icon size={18} strokeWidth={2} />}
+                  <span className="nav-tooltip">{label}</span>
+                </Link>
+              </li>
+            );
+          }
           const active = activeId === id;
           return (
             <li key={id}>
@@ -215,10 +268,40 @@ export default function Navbar() {
                 <div className="w-10 h-10 rounded-xl accent-bg flex items-center justify-center">
                   <UserIcon size={20} className="accent-icon" />
                 </div>
-                <div>
-                  <p className="text-sm font-semibold">{userTypeLabels[userType].label}</p>
-                  <p className="text-[10px] opacity-40">Current path</p>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold truncate">
+                    {isSignedIn ? user?.fullName || user?.primaryEmailAddress?.emailAddress : userTypeLabels[userType].label}
+                  </p>
+                  <p className="text-[10px] opacity-40 truncate">
+                    {isSignedIn ? `Personal account · ${userTypeLabels[userType].label}` : "Guest · not signed in"}
+                  </p>
                 </div>
+              </div>
+
+              {/* Personal account */}
+              <div className="space-y-1 mb-4">
+                {isSignedIn ? (
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setShowPanel(false)}
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm accent-bg font-semibold"
+                  >
+                    <LayoutDashboard size={16} className="accent-icon" /> My dashboard
+                  </Link>
+                ) : (
+                  <>
+                    <SignUpButton mode="modal">
+                      <button className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm accent-bg font-semibold">
+                        <UserPlus size={16} className="accent-icon" /> Create personal account
+                      </button>
+                    </SignUpButton>
+                    <SignInButton mode="modal">
+                      <button className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm hover:bg-[var(--tint)]">
+                        <LogIn size={16} className="opacity-50" /> Sign in
+                      </button>
+                    </SignInButton>
+                  </>
+                )}
               </div>
 
               {/* Theme selector */}
@@ -270,14 +353,26 @@ export default function Navbar() {
                 })}
               </div>
 
-              {/* Reset */}
-              <button
-                onClick={handleReset}
-                className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-left text-sm opacity-50 hover:opacity-100 hover:bg-red-500/10 hover:text-red-500 transition-all"
-              >
-                <LogOut size={16} />
-                <span>Reset to Guest</span>
-              </button>
+              {/* Reset / sign out */}
+              {isSignedIn ? (
+                <SignOutButton redirectUrl="/">
+                  <button
+                    onClick={() => clearUserPreferences()}
+                    className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-left text-sm opacity-50 hover:opacity-100 hover:bg-red-500/10 hover:text-red-500 transition-all"
+                  >
+                    <LogOut size={16} />
+                    <span>Sign out</span>
+                  </button>
+                </SignOutButton>
+              ) : (
+                <button
+                  onClick={handleReset}
+                  className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-left text-sm opacity-50 hover:opacity-100 hover:bg-red-500/10 hover:text-red-500 transition-all"
+                >
+                  <LogOut size={16} />
+                  <span>Reset to Guest</span>
+                </button>
+              )}
             </div>
           )}
         </li>
