@@ -7,7 +7,8 @@ let client: NeonQueryFunction<false, false> | null = null;
 /** Lazily created so builds don't need DATABASE_URL. */
 export function sql(): NeonQueryFunction<false, false> {
   if (!client) {
-    const url = process.env.DATABASE_URL;
+    // The Vercel Neon integration sets DATABASE_URL and POSTGRES_URL.
+    const url = process.env.DATABASE_URL || process.env.POSTGRES_URL;
     if (!url) throw new Error("DATABASE_URL is not configured");
     client = neon(url);
   }
@@ -123,6 +124,13 @@ export async function listAttemptResults(userId: string): Promise<AssessmentResu
      ORDER BY created_at DESC
      LIMIT 50`;
   return rows.map((r) => r.result as AssessmentResult);
+}
+
+/** Public lookup for shareable reports — attempt ids are random UUIDs. */
+export async function getReportUrl(id: string): Promise<string | null> {
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return null;
+  const rows = await sql()`SELECT report_url FROM assessment_attempts WHERE id = ${id} LIMIT 1`;
+  return (rows[0]?.report_url as string | null) ?? null;
 }
 
 export async function setReportUrl(userId: string, id: string, url: string): Promise<void> {

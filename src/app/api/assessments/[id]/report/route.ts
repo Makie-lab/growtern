@@ -11,7 +11,8 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
   const { id } = await params;
   const attempt = await getAttempt(account.userId, id);
   if (!attempt) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  if (attempt.report_url) return NextResponse.json({ url: attempt.report_url });
+  const viewerUrl = `/reports/${attempt.id}`;
+  if (attempt.report_url) return NextResponse.json({ url: viewerUrl });
 
   if (!isBlobConfigured()) {
     return NextResponse.json({ error: "Report storage is not configured" }, { status: 503 });
@@ -24,5 +25,5 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
     attempt.result
   );
   await setReportUrl(account.userId, attempt.id, url);
-  return NextResponse.json({ url }, { status: 201 });
+  return NextResponse.json({ url: viewerUrl }, { status: 201 });
 }
