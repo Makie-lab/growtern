@@ -1,7 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function CategoryLayout({
+/** Shared shell for inner pages: categories, assessment, experts, dashboard. */
+export default function PlatformLayout({
   children,
 }: {
   children: React.ReactNode;

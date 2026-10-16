@@ -35,12 +35,16 @@ export default function CTASection() {
           </h2>
 
           <p className="text-sm sm:text-base md:text-lg opacity-60 max-w-xl mx-auto mb-6 sm:mb-10">
-            All resources are free. No signups, no hidden costs. Just pick a
-            category or search by your target role and go.
+            All resources are free. Create a personal account to take the
+            200-item AHP competency assessment, identify your career path and
+            connect with experts in the Philippines.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-            <a href="#categories" className="btn-primary text-[15px] px-8 py-3.5">
+            <a href="/assessment" className="btn-primary text-[15px] px-8 py-3.5">
+              Take the Assessment
+            </a>
+            <a href="#categories" className="btn-secondary text-[15px] px-8 py-3.5">
               Browse Categories
             </a>
             <a href="#search" className="btn-secondary text-[15px] px-8 py-3.5">

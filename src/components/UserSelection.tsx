@@ -2,20 +2,24 @@
 
 import { useState, useEffect } from "react";
 import { User, UserCheck, GraduationCap, Briefcase, BookOpen, ArrowRight } from "lucide-react";
+import { useAuth } from "@clerk/nextjs";
 import { getUserPreferences, setUserPreferences, type UserType } from "@/data/userTypes";
 
 export default function UserSelection() {
   const [step, setStep] = useState<"initial" | "select-type" | "done">("initial");
   const [visible, setVisible] = useState(false);
+  const { isLoaded, isSignedIn } = useAuth();
 
   useEffect(() => {
+    if (!isLoaded) return;
     const prefs = getUserPreferences();
-    if (prefs) {
+    // Signed-in personal accounts already have a profile — never show the modal.
+    if (prefs || isSignedIn) {
       setStep("done");
     } else {
       setVisible(true);
     }
-  }, []);
+  }, [isLoaded, isSignedIn]);
 
   const handleGuest = () => {
     setUserPreferences({ userType: "guest", createdAt: new Date().toISOString() });
@@ -27,7 +31,8 @@ export default function UserSelection() {
     setUserPreferences({ userType: type, createdAt: new Date().toISOString() });
     setStep("done");
     setVisible(false);
-    window.location.reload();
+    // Continue to create a personal account; the chosen path is saved to it on the dashboard.
+    window.location.href = "/sign-up?redirect_url=%2Fdashboard";
   };
 
   if (step === "done" || !visible) return null;
@@ -54,8 +59,8 @@ export default function UserSelection() {
                   <UserCheck size={22} className="text-[#1e3a5f]" />
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold">Continue as User</p>
-                  <p className="text-xs opacity-50">Personalized experience based on your path</p>
+                  <p className="font-semibold">Create a personal account</p>
+                  <p className="text-xs opacity-50">Take assessments, save results and find your career path</p>
                 </div>
                 <ArrowRight size={16} className="opacity-30 group-hover:opacity-70 transition-opacity" />
               </button>
