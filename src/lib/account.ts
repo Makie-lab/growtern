@@ -1,23 +1,29 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
+/**
+ * PLACEHOLDER AUTH — a personal account identified by email, kept in a cookie.
+ *
+ * There is no password: anyone who types an email is "signed in" as that
+ * account. Good enough for running the app locally. Replace with a real auth
+ * provider (e.g. Clerk) before putting the app online.
+ */
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { upsertProfile, type Profile } from "@/lib/db";
+import { getProfile, type Profile } from "@/lib/db";
+
+export const SESSION_COOKIE = "growtern_session";
 
 export interface Account {
   userId: string;
-  email: string | null;
+  email: string;
   name: string | null;
   profile: Profile;
 }
 
-/** Resolve the signed-in personal account and make sure it has a profile row. */
 export async function getAccount(): Promise<Account | null> {
-  const { userId } = await auth();
+  const userId = (await cookies()).get(SESSION_COOKIE)?.value;
   if (!userId) return null;
-  const user = await currentUser();
-  const email = user?.primaryEmailAddress?.emailAddress ?? null;
-  const name = user?.fullName || user?.firstName || null;
-  const profile = await upsertProfile({ userId, email, fullName: name });
-  return { userId, email, name: profile.full_name ?? name, profile };
+  const profile = await getProfile(userId);
+  if (!profile) return null;
+  return { userId, email: profile.email, name: profile.full_name, profile };
 }
 
 /** For pages: redirect to sign-in when there is no account. */

@@ -1,16 +1,11 @@
-import { put } from "@vercel/blob";
+/**
+ * Printable competency report. PLACEHOLDER for file storage: the HTML is built
+ * on request from the saved result instead of being uploaded anywhere.
+ */
 import { escapeHtml } from "@/lib/email";
 import type { AssessmentResult } from "@/lib/scoring";
 
-/**
- * Stores connected to a Vercel project authenticate with OIDC (BLOB_STORE_ID +
- * VERCEL_OIDC_TOKEN). Older stores and local dev can use BLOB_READ_WRITE_TOKEN.
- */
-export function isBlobConfigured(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
-}
-
-function renderReport(name: string, createdAt: string, result: AssessmentResult): string {
+export function renderReport(name: string, createdAt: string, result: AssessmentResult): string {
   const pathways = result.pathways
     .map((p) => {
       const comps = p.competencies
@@ -40,13 +35,4 @@ h1,h2{color:#1e3a5f}table{border-collapse:collapse;width:100%}td,th{border:1px s
 ${pathways}
 <p style="opacity:.6;font-size:12px">Scores use the Analytic Hierarchy Process: competency weights come from Saaty pairwise comparison matrices (CR &lt; 0.10).</p>
 </body></html>`;
-}
-
-export async function uploadReport(attemptId: string, name: string, createdAt: string, result: AssessmentResult) {
-  const blob = await put(`reports/${attemptId}.html`, renderReport(name, createdAt, result), {
-    access: "public",
-    contentType: "text/html; charset=utf-8",
-    addRandomSuffix: true,
-  });
-  return blob.url;
 }

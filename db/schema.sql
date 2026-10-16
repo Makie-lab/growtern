@@ -1,7 +1,8 @@
--- GrowTern PostgreSQL schema (Neon / Vercel Postgres)
--- Apply with: npm run db:migrate
+-- GrowTern PostgreSQL schema — NOT USED YET.
+-- The app currently stores data in a local JSON file (src/lib/db.ts).
+-- Use these tables when you replace that placeholder with a real database.
 
--- One personal profile per Clerk user (no organisations / team accounts).
+-- One personal profile per user (no organisations / team accounts).
 CREATE TABLE IF NOT EXISTS profiles (
   user_id            TEXT PRIMARY KEY,               -- Clerk user id
   email              TEXT,

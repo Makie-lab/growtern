@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { UserProfile } from "@clerk/nextjs";
-import { BookOpen, Briefcase, GraduationCap, Loader2, Settings, X } from "lucide-react";
+import { BookOpen, Briefcase, GraduationCap, Loader2 } from "lucide-react";
 import { getUserPreferences, setUserPreferences } from "@/data/userTypes";
 import type { AccountUserType } from "@/lib/db";
 
@@ -23,7 +22,6 @@ export default function ProfileForm({
 }) {
   const [form, setForm] = useState(initial);
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
-  const [showClerk, setShowClerk] = useState(false);
 
   // New account: adopt the path picked in the onboarding modal before sign-up.
   useEffect(() => {
@@ -61,9 +59,6 @@ export default function ProfileForm({
     <section className="glass-card p-5">
       <div className="flex items-center justify-between mb-1">
         <h2 className="font-semibold">Personal profile</h2>
-        <button type="button" onClick={() => setShowClerk(true)} className="text-xs opacity-60 hover:opacity-100 inline-flex items-center gap-1">
-          <Settings size={13} /> Account security
-        </button>
       </div>
       <p className="text-[11px] opacity-50 mb-4 truncate">{email}</p>
 
@@ -100,17 +95,6 @@ export default function ProfileForm({
         {status === "error" && <p className="text-[11px] text-red-500">Could not save. Please try again.</p>}
       </form>
 
-      {showClerk && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setShowClerk(false)} />
-          <div className="relative max-h-[90vh] overflow-auto">
-            <button type="button" onClick={() => setShowClerk(false)} aria-label="Close" className="absolute right-3 top-3 z-10 p-1 rounded-full bg-[var(--background)]">
-              <X size={16} />
-            </button>
-            <UserProfile routing="hash" />
-          </div>
-        </div>
-      )}
     </section>
   );
 }
